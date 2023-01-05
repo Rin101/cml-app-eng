@@ -1,6 +1,6 @@
 {
   "name": "cml-app-eng",
-  "homepage": "https://rin101.github.io/cml-app-eng",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
