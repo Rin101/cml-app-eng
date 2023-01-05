@@ -1,0 +1,26 @@
+index_arr
+    dousa group
+        row
+            jiku
+
+program_data 
+
+            動作グループ（モーションバンク）
+                                    軸
+                                        individual 動作
+                                        individual 動作
+                                    軸
+                                        individual 動作
+                                        individual 動作
+            動作グループ（モーションバンク）
+                                    軸
+                                        individual 動作
+                                        individual 動作
+                                    軸
+                                        individual 動作
+                                        individual 動作
+loop_data
+
+            row_index to row_index, loop X times
+            row_index to row_index, loop X times
+            row_index to row_index, loop X times

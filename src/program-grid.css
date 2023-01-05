@@ -1,0 +1,458 @@
+.program-grid {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 0.3rem;
+  padding: 2rem 0.2rem;
+  overflow: visible;
+}
+
+.program-grid > div {
+  text-align: center;
+}
+/* ---------------- */
+.pg-left {
+  grid-column: 1/2;
+  /* gap: 0.6rem 0; */
+}
+
+.pglemp0 {
+  height: 1.5rem;
+}
+
+.pglempgroup {
+  height: 1.5rem;
+  margin: 0.6rem;
+}
+
+.pg-l-empty-loop {
+  height: 2.3rem;
+  margin: calc(0.2rem + 0.4rem) 0;
+  border-radius: 0.2rem;
+  background-color: #e7e7eb;
+}
+
+.pg-l-loop {
+  /* height: 2.3rem; */
+  margin: calc(0.2rem + 0.4rem) 0;
+  border-radius: 0.2rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(235, 235, 235);
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.loop-drag-top,
+.loop-drag-bottom {
+  position: absolute;
+  width: 100%;
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+
+.loop-drag-top {
+  top: 0;
+}
+
+.loop-drag-bottom {
+  bottom: 0;
+}
+
+.loop-drag-top > div,
+.loop-drag-bottom > div {
+  width: 100%;
+  background-color: rgb(209, 209, 209);
+  height: 0.7rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.6rem;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.loop-drag-top > div:last-child,
+.loop-drag-bottom > div:last-child {
+  border-top: solid rgba(0, 0, 0, 0.1) 1px;
+}
+
+.loop-drag-top > div:hover,
+.loop-drag-bottom > div:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: ease 0.2s;
+}
+
+/* --- */
+.loop-title {
+  cursor: pointer;
+}
+
+.loop-title:hover {
+  color: rgba(0, 0, 0, 0.4);
+  transition: ease-in-out 0.2s;
+}
+
+.trash-block {
+  margin: 0 0.2rem 0 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.trash-block i:hover {
+  color: rgb(221, 63, 63);
+  transition: ease-in-out 0.1s;
+}
+
+.pg-l-empty-loop:hover,
+.pg-l-empty-loop-hovered {
+  border: 2px solid rgb(74, 129, 192);
+}
+
+/* ---------------- */
+.program-main-grid {
+  display: grid;
+  /* grid-template-columns: repeat(3, 1fr); */
+  gap: 0.2rem 0.5rem;
+  overflow-x: auto;
+}
+
+.empty-right-box {
+  width: 1rem;
+}
+
+.trash-row-right-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: rgb(185, 185, 185);
+  cursor: pointer;
+}
+
+.trash-row-right-box i:hover,
+.trash-jiku:hover {
+  color: rgb(221, 63, 63);
+  transition: ease-in-out 0.1s;
+}
+
+.move-row-cont {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  margin: 0 0 0 0.5rem;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.move-row-up {
+  margin-bottom: 0.3rem;
+}
+
+.move-row-up:hover,
+.move-row-down:hover {
+  color: rgba(0, 0, 0, 0.4) !important;
+  transition: ease 0.2s;
+}
+
+.jiku-number {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  height: 1.5rem;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.move-jiku {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.move-jiku:hover {
+  color: rgba(0, 0, 0, 0.4);
+  transition: ease 0.2s;
+}
+
+.trash-jiku {
+  margin-left: 0.5rem;
+  color: rgb(185, 185, 185);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.add-jiku-left,
+.add-jiku-right {
+  height: 100%;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 0.2rem;
+  position: absolute;
+  transform: translate(-50%, 0);
+}
+
+.add-jiku-left {
+  left: 0%;
+}
+
+.add-jiku-right {
+  right: 0%;
+}
+
+.grid-line {
+  /* grid-column: 1/4; */
+  height: 1.5px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.pg-add-row {
+  grid-column: 1/4;
+  height: 0.2rem;
+  background-color: rgb(168, 168, 168);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.add-jiku-plus-cont,
+.add-row-plus-cont {
+  display: none;
+  background-color: rgb(168, 168, 168);
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.5rem;
+  z-index: 100;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: 0.2s;
+}
+
+.dousa-group-kaishi {
+  /* grid-column: 1/4; */
+  padding: 0.1rem 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.5rem;
+}
+
+.dousa-box,
+.dragged-box {
+  border-radius: 0.2rem;
+  font-weight: bold;
+  /* color: rgba(0, 0, 0, 0.8); */
+  color: #fef7f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 2.3rem;
+  /* background-color: rgb(216, 221, 231); */
+  /* background-color: rgb(192, 204, 226); */
+  background-image: linear-gradient(#63656a, #585b60, #63656a);
+  min-width: 7rem;
+  cursor: pointer;
+}
+
+.dragged-box {
+  opacity: 0.4;
+}
+
+.dousa-box p {
+  cursor: pointer;
+}
+
+.no-value-circle {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  height: 0.4rem;
+  width: 0.4rem;
+  background-color: rgb(219, 219, 219);
+  border-radius: 50%;
+}
+
+.typeDataInDousa {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 2px 4px 1px rgba(255, 105, 135, 0.2);
+  padding: 1rem;
+  border-radius: 0.3rem;
+  z-index: 20000 !important;
+  width: fit-content;
+}
+
+/* -- */
+.fa-caret-down {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.num-dropdown {
+  margin-left: 0.2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.currentNum-container {
+  display: flex;
+  border: solid 0.1px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.2rem;
+  min-width: 1.5rem;
+}
+
+.num-dropdown-item-container {
+  display: none;
+  height: 10rem;
+  overflow-y: scroll;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  box-shadow: 0 2px 4px 1px rgba(255, 105, 135, 0.2);
+  z-index: 10;
+}
+
+.num-dropdown-item {
+  border: solid 0.1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 0 0.2rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
+  background-color: white;
+  transition: ease 0.1s;
+}
+
+.num-dropdown-item:hover {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+/* Works on Firefox */
+.num-dropdown-item-container {
+  scrollbar-width: 0.3rem;
+  scrollbar-color: rgb(223, 223, 223) rgb(179, 179, 179);
+}
+
+/* Works on Chrome, Edge, and Safari */
+.num-dropdown-item-container::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 0.3rem;
+}
+
+.num-dropdown-item-container::-webkit-scrollbar-track {
+  background: rgb(223, 223, 223);
+  border-radius: 100vw;
+}
+
+.num-dropdown-item-container::-webkit-scrollbar-thumb {
+  background-color: rgb(179, 179, 179);
+  border-radius: 100vw;
+}
+
+/* -- */
+
+.typedata-input-line {
+  margin: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.typedata-input-line p {
+  margin-right: 0.6rem;
+}
+
+.type-data-input {
+  text-align: center;
+  margin-right: 0.3rem;
+}
+
+.type-data-button {
+  align-self: center;
+}
+
+.close-typedata {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
+
+.dousa-title:hover {
+  /* color: rgba(0, 0, 0, 0.4); */
+  opacity: 0.7;
+  transition: ease-in-out 0.2s;
+}
+
+.dousa-group-kaishi i {
+  margin: 0 0.2rem 0 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.dousa-box i {
+  margin: 0 0.2rem 0 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.dousa-box i:hover {
+  color: #f65e2d;
+  transition: ease-in-out 0.1s;
+}
+
+.type-times-circle {
+  color: rgb(185, 185, 185);
+  cursor: pointer;
+}
+
+/* .dousa-box i:hover,
+.dousa-group-kaishi i:hover { */
+/* .fa-trash:hover, */
+.dousa-group-kaishi i:hover,
+.type-times-circle:hover {
+  color: rgb(221, 63, 63);
+  transition: ease-in-out 0.1s;
+}
+
+.pg-empty-box {
+  border-radius: 0.2rem;
+  height: 2.3rem;
+  background-color: rgb(231, 231, 235);
+  min-width: 7rem;
+}
+
+.pg-empty-box:hover,
+.pg-empty-hovered {
+  border: 2px solid rgb(156, 202, 255);
+}

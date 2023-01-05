@@ -1,0 +1,15 @@
+
+- numbering of program blocks
+
+- [type data in dousa] left side gets hidden
+
+- delete confirmation (small popup [yes or no]  -> hotkey enter)
+
+- confirm [output to CML] when there is a program block with no value
+
+- wierd layout behaviour when added multiple rows, then delete rows
+
+- design
+
+data-input -> ok -> set data -> 変換 -> toCML
+data-input -> setdata -> 変換 -> toCML

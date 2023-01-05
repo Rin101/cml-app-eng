@@ -1,0 +1,10 @@
+
+popup -> like gmail app -> weird 
+
+responsive layout
+
+design
+
+tannikannsann dropdown is behind "back button"
+
+uselocalstorage ?

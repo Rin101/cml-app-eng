@@ -1,19 +1,20 @@
 import { Button } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
-import './App.css'
-import './program-grid.css'
-import { Editor } from './Editor';
-import { ProgramBlock, TypeDataInDousa, LoopInputBox } from './programBlock';
-import useLocalStorage from './useLocalStorage';
-import { TopMenu, downloadFile } from './menu';
-import soundfile1 from './sounds/決定、ボタン押下38.mp3'
-import soundfile2 from './sounds/決定、ボタン押下44.mp3'
-import instructionImg from './image/popup-instruction.png'
+import '../App.css'
+import '../program-grid.css'
+import { Editor } from '../Editor';
+import { ProgramBlockEng, TypeDataInDousaEng, LoopInputBoxEng } from './programBlock_eng';
+import useLocalStorage from '../useLocalStorage';
+import { TopMenuEng } from './menu_eng';
+import { downloadFile } from '../menu';
+import soundfile1 from '../sounds/決定、ボタン押下38.mp3'
+import soundfile2 from '../sounds/決定、ボタン押下44.mp3'
+import instructionImg from '../image/popup-instruction.png'
 
-export const App = () => {
+export const AppEng = () => {
 
     useEffect(() => {
-        document.title = 'CML自動生成ツール | MUSCLE CORPORATION';
+        document.title = 'Automatic CML Generation Tool | MUSCLE CORPORATION';
       }, []);
 
     const [cmlOutput, setCmlOutput] = useLocalStorage('CML', '')
@@ -22,9 +23,6 @@ export const App = () => {
         'kNum5': 100, 'kNum11': 0, 'kNum12': 100, 'kNum13': 100, 'kNum14': 0, 
         'kNum23': 100, 'kNum24': 100, 'kNum25': 100, 'kNum26': 100, 'kNum27': 0, 'kNum28': 100
     })
-    useEffect(() => {
-        console.log(settings)
-    }, [settings])
     const [isMute, setIsMute] = useState(false)
     const [jiku, setJiku] = useState(1)
     let initialTannikannsannData = []
@@ -141,9 +139,9 @@ export const App = () => {
     const DataInputBox = (props) => {
         switch (props.inputBoxType) {
             case "typedata":
-                return <TypeDataInDousa tkData={tannikannsannData} setInputBoxType={setInputBoxType} isInitial={typeDataObj[4]} jiku={typeDataObj[0]} parentId={typeDataObj[1]} dousaType={typeDataObj[2]} dousaNum={typeDataObj[3]} programData={programData} setProgramData={setProgramData}/>
+                return <TypeDataInDousaEng tkData={tannikannsannData} setInputBoxType={setInputBoxType} isInitial={typeDataObj[4]} jiku={typeDataObj[0]} parentId={typeDataObj[1]} dousaType={typeDataObj[2]} dousaNum={typeDataObj[3]} programData={programData} setProgramData={setProgramData}/>
             case "loop":
-                return <LoopInputBox setInputBoxType={setInputBoxType} isInitial={loopInputObj[1]} parentId={loopInputObj[0]} loopData={loopData} setLoopData={setLoopData} />
+                return <LoopInputBoxEng setInputBoxType={setInputBoxType} isInitial={loopInputObj[1]} parentId={loopInputObj[0]} loopData={loopData} setLoopData={setLoopData} />
             default:
                 return <></>
         }
@@ -160,6 +158,10 @@ export const App = () => {
                     <div id="close-instruction-popup" onClick={() => close()}><i className="fas fa-times-circle"></i></div>
                     <img src={instructionImg} alt="instruction" />
                 </div>
+                {/* <div className='popup-neveragain'>
+                    <p style={{marginRight:10}}>次回から表示しない</p>
+                    <input type={'checkbox'} />
+                </div> */}
             </div>
         )
     }
@@ -170,27 +172,27 @@ export const App = () => {
             <DataInputBox inputBoxType={inputBoxType} />
             <div ref={layerRef} className="layer"></div>
             <div className='top-menu-container'>
-                <TopMenu settings={settings} setSettings={setSettings} isMute={isMute} setIsMute={setIsMute} tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
+                <TopMenuEng settings={settings} setSettings={setSettings} isMute={isMute} setIsMute={setIsMute} tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
             </div>
             <div className="center-section">
                 <div className="command-list-width-box"></div>
                 <div className='command-list-container'>
                     <div className="command-list">
                         <div className='command-list-wrapper'>
-                            <div onMouseEnter={(e) => commandHover(e)} className="command-selector" id="dousaGroup-selector" draggable="true"><i className="fas fa-grip-vertical"></i>動作グループを追加</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="ichigime-selector" draggable="true"><i className="fas fa-grip-vertical"></i>位置決め</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="oshituke-selector" draggable="true"><i className="fas fa-grip-vertical"></i>押付け</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="taima-selector" draggable="true"><i className="fas fa-grip-vertical"></i>タイマ</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="kurikaeshi-selector" draggable="true"><i className="fas fa-grip-vertical"></i>繰り返し</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="incremental-ichigime-selector" draggable="true"><i className="fas fa-grip-vertical"></i>位置決め+</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="incremental-oshituke-selector" draggable="true"><i className="fas fa-grip-vertical"></i>押付け+</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="nyuryokuten-selector" draggable="true"><i className="fas fa-grip-vertical"></i>入力点からの実行</div>
+                            <div onMouseEnter={(e) => commandHover(e)} className="command-selector" id="dousaGroup-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Add Motion Group</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="ichigime-selector" draggable="true"><i className="fas fa-grip-vertical"></i>PTP</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="oshituke-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Push</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="taima-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Timer</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="kurikaeshi-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Loop</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="incremental-ichigime-selector" draggable="true"><i className="fas fa-grip-vertical"></i>PTP+</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="incremental-oshituke-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Push+</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="nyuryokuten-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Execution from Input signal</div>
                         </div>
                     </div>
                 </div>
                 <div className='main-interface-section'>
                     <div className='program-block-container'>
-                        <ProgramBlock settings={settings} isMute={isMute} tkData={tannikannsannData} setTkData={setTannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
+                        <ProgramBlockEng settings={settings} isMute={isMute} tkData={tannikannsannData} setTkData={setTannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
                     </div>
                     <div className='cml-output-container'>
                         <div className="cml-output-section">
@@ -198,18 +200,36 @@ export const App = () => {
                             <Editor value={cmlOutput} onChange={setCmlOutput} />
                             <div className="jikkou-button">
                                 <Button variant="contained" onClick={() => showPopUpOfInstruction()}>
-                                    テキストファイルに<br/>エクスポート
+                                    Export<br/>text file
                                 </Button>
                                 <div className="copy-cml-container">
                                     <div className="copy-cml" onMouseEnter={() => display(expCopy)} onMouseLeave={() => hide(expCopy)} onClick={() => copyCML(cmlOutput)}><i className="fas fa-copy"></i></div>
-                                    <div ref={expCopy} className="exp-copy hidden">コピー</div>
-                                    <div ref={expCopyDone} className="exp-copy-done hidden">コピーされました</div>
+                                    <div ref={expCopy} className="exp-copy hidden">copy</div>
+                                    <div ref={expCopyDone} className="exp-copy-done hidden">copied!</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {/* <div className="center-section">
+                <TopMenuEng tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
+                <ProgramBlockEng tkData={tannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
+            </div>
+            <div className="cml-output-section">
+                <h3 className='unselectable'>CML</h3>
+                <Editor value={cmlOutput} onChange={setCmlOutput} />
+                <div className="jikkou-button">
+                    <Button variant="contained" onClick={() => handleFileExport()}>
+                        テキストファイルにエクスポート
+                    </Button>
+                    <div className="copy-cml-container">
+                        <div className="copy-cml" onMouseEnter={() => display(expCopy)} onMouseLeave={() => hide(expCopy)} onClick={() => copyCML(cmlOutput)}><i className="fas fa-copy"></i></div>
+                        <div ref={expCopy} className="exp-copy hidden">コピー</div>
+                        <div ref={expCopyDone} className="exp-copy-done hidden">コピーされました</div>
+                    </div>
+                </div>
+            </div> */}
         </div>
     )
 }
