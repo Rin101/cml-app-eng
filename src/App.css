@@ -434,7 +434,15 @@ input[type]:focus,
   border-radius: 0.4rem;
 }
 
-.cml-output-section h3 {
+.cml-output-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cml-output-content h3 {
   margin: 0.5rem auto;
   width: max-content;
   font-size: 1.4rem;
@@ -444,6 +452,10 @@ input[type]:focus,
 .cml-editor-container {
   width: 100%;
 }
+
+/* .cml-editor {
+  height: 1000px;
+} */
 
 .jikkou-button {
   margin: 1rem auto;
