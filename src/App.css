@@ -424,9 +424,10 @@ input[type]:focus,
 
 .cml-output-section {
   min-height: calc(85vh - 1rem);
-  padding: 0rem 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  /* justify-content: space-around; */
   align-items: center;
   flex-direction: column;
   position: relative;

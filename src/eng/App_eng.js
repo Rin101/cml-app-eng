@@ -214,6 +214,7 @@ export const AppEng = () => {
                                     <div ref={expCopyDone} className="exp-copy-done hidden">copied!</div>
                                 </div>
                             </div>
+                            <div className='spacer'></div>
                         </div>
                     </div>
                 </div>
