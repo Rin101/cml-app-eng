@@ -18,7 +18,7 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
             {"kNum":22, "name":"gentenShingou", "label":"原点信号源", "inputType":"dropdown", "inputs":["押当原点検出","押当原点検出(自)","原点センサ","原点センサ(自)"], "infoText":<>原点検出信号源と検出方法を設定<br/>原点センサは、入力点１にのみ割付可能<br/>（自）：電源 ON 時、自動原点検出動作を開始<br/>11.1 参照</>},
             {"kNum":23, "name":"gentenSpeed", "label":"原点検出速度", "inputType":"text", "infoText":'原点検出動作時の速度を設定'},
             {"kNum":24, "name":"gentenAccel", "label":"原点検出加速度", "inputType":"text", "infoText":'原点検出動作時の加速度を設定'},
-            {"kNum":25, "name":"gentenDirection", "label":"原点検出方向", "inputType":"text", "infoText":'原点検出動作時の動作方向を設定'},
+            {"kNum":25, "name":"gentenDirection", "label":"原点検出方向", "inputType":"dropdown", "inputs":["CW方向","CCW方向"], "infoText":'原点検出動作時の動作方向を設定'},
             {"kNum":26, "name":"gentenOffset", "label":"原点オフセット距離", "inputType":"text", "infoText":<>検出した原点から座標原点までの<br/>オフセット量を設定</>},
             {"kNum":27, "name":"gentenUnit", "label":"原点オフセット距離単位", "inputType":"dropdown", "inputs":["100","10","1"], "infoText":'オフセット設定時の単位を設定'},
             {"kNum":28, "name":"gentenTorque", "label":"押当原点検出トルク", "inputType":"text", "infoText":<>押当原点検出時、機械ストッパを検出するトルクを<br/>定格トルクに対する比率で設定<br/>11.1.1 参照</>},
