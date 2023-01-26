@@ -552,10 +552,10 @@ export const ProgramBlockEng = (props) => {
         <div className="program-block">
             {dataToHTML(props.programData)}
             <div className="enter-button">
-                <Button variant="contained" onClick={() => pressRun(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))}>Run</Button>
+                <Button variant="contained" onClick={() => pressRun(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))}>Write to Motor</Button>
                 <div style={{height:10,width:30}}></div>
-                <Button variant="contained" onClick={() => stop()}>Stop</Button>
-                <div style={{height:10,width:30}}></div>
+                {/* <Button variant="contained" onClick={() => stop()}>Stop</Button>
+                <div style={{height:10,width:30}}></div> */}
                 <Button variant="contained" onClick={() => props.setCmlOutput(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))}>Convert to CML</Button>
             </div>
         </div>
