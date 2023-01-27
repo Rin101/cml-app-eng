@@ -4,7 +4,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
     let every_program_teigi = ""
     for (let dousa_group of programData) {
         let dousa_group_index = programData.indexOf(dousa_group) + 1
-        every_program_teigi += "B" + dousa_group_index.toString() + ".1\n"
+        every_program_teigi += "B" + dousa_group_index.toString() + ".1\r\n"
         let dousa_jikkou_of_group = ""
         for (let dousa_row of dousa_group) {
             let dousa_jikkou_row_arr = []
@@ -15,23 +15,23 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                     const tanniValue = tkData[dousa_jiku-1].tanniValue
                     switch (dousa[0]) {
                         case "位置決め":
-                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+`\n`
+                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\r\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\r\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+`\r\n`
                             dousa_jikkou_row_arr.push(`S${cml_numbers},A${cml_numbers},P${cml_numbers}`)
                             break
                         case "位置決め+":
-                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+`\n`
+                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\r\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\r\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+`\r\n`
                             dousa_jikkou_row_arr.push(`S${cml_numbers},A${cml_numbers},P${cml_numbers}+`)
                             break
                         case "押付け":
-                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+"\n"
+                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\r\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\r\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+"\r\n"
                             dousa_jikkou_row_arr.push(`S${cml_numbers},A${cml_numbers},Q${cml_numbers}`)
                             break
                         case "押付け+":
-                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+"\n"
+                            every_data_teigi += "S"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue,100).toString()+"\r\nA"+cml_numbers+"="+getPulseValue(dousa[2][1], tanniValue,1000).toString()+"\r\nP"+cml_numbers+"="+getPulseValue(dousa[2][2], tanniValue).toString()+"\r\n"
                             dousa_jikkou_row_arr.push(`S${cml_numbers},A${cml_numbers},Q${cml_numbers}+`)
                             break
                         case "タイマ":
-                            every_data_teigi += "T"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue).toString()+"\n"
+                            every_data_teigi += "T"+cml_numbers+"="+getPulseValue(dousa[2][0], tanniValue).toString()+"\r\n"
                             dousa_jikkou_row_arr.push(`T${cml_numbers}`)
                             break
                         case "入力点からの実行":
@@ -47,14 +47,14 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
             let loop_end = ""
             for (let loop of loopData) {
                 if (loop[0][0] === programData.indexOf(dousa_group).toString() && loop[0][1] === dousa_group.indexOf(dousa_row).toString()) {
-                    loop_start = `X${loop[2]}.1\n`
+                    loop_start = `X${loop[2]}.1\r\n`
                 }
                 if (loop[1][0] === programData.indexOf(dousa_group).toString() && loop[1][1] === dousa_group.indexOf(dousa_row).toString()) {
-                    loop_end = `X.1-\n`
+                    loop_end = `X.1-\r\n`
                 }
             }
             if (dousa_jikkou_row_arr.length >= 1) {
-                dousa_jikkou_of_group += loop_start + dousa_jikkou_row_arr.join(",") + "\n" + loop_end
+                dousa_jikkou_of_group += loop_start + dousa_jikkou_row_arr.join(",") + "\r\n" + loop_end
             } else {
                 dousa_jikkou_of_group += loop_start + loop_end
             }
@@ -62,16 +62,16 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
         every_program_teigi += dousa_jikkou_of_group
     }
 
-    let settingsCML = "\n"
+    let settingsCML = "\r\n"
     const kNumList = [5, 11, 12, 13, 14, 23, 24, 25, 26, 27, 28]
     const jikuNum = programData[0][0].length
     for (let kNum of kNumList) {
         for (let i=1; i<=jikuNum; i++) {
             const value = settings["kNum"+kNum.toString()]
             if (typeof value !== 'string') {
-                settingsCML += ("K"+kNum.toString()+"."+i.toString()+"="+value.toString()+"\n")
+                settingsCML += ("K"+kNum.toString()+"."+i.toString()+"="+value.toString()+"\r\n")
             } else {
-                settingsCML += ("K"+kNum.toString()+"."+i.toString()+"="+value+"\n")
+                settingsCML += ("K"+kNum.toString()+"."+i.toString()+"="+value+"\r\n")
             }
         }
     }
@@ -79,13 +79,13 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
     output += every_data_teigi
     output += every_program_teigi
     // if (isNyuryokuShingou) {
-    //     let nyuryokuTxt = `\nK81=1\nK82=1\nL1.1\nI1.1,JL2.1,T0.1\nI2.1,JL3.1,T0.1\nI3.1,JL4.1,T0.1\nI4.1,].1:].1,T0.1\nL2.1\n[1.1\nI1.1,W0.1,JL1.1\nL3.1\n[2.1\nI2.1,W0.1,JL1.1\nL4.1\n[3.1\nI3.1,W0.1,JL1.1\nEND`
+    //     let nyuryokuTxt = `\r\nK81=1\r\nK82=1\r\nL1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND`
     //     return output + "END" + settingsCML + nyuryokuTxt
     // } else {
     //     return output + "END" + settingsCML
     // }
-    let nyuryokuTxt = `K81=1\nK82=1\nL1.1\nI1.1,JL2.1,T0.1\nI2.1,JL3.1,T0.1\nI3.1,JL4.1,T0.1\nI4.1,].1:].1,T0.1\nL2.1\n[1.1\nI1.1,W0.1,JL1.1\nL3.1\n[2.1\nI2.1,W0.1,JL1.1\nL4.1\n[3.1\nI3.1,W0.1,JL1.1\nEND`
-    // let nyuryokuTxt = `\nK81=1\nK82=1\nL1.1\nI1.1,JL2.1,T0.1\nI2.1,JL3.1,T0.1\nI3.1,JL4.1,T0.1\nI4.1,].1:].1,T0.1\nL2.1\n[1.1\nI1.1,W0.1,JL1.1\nL3.1\n[2.1\nI2.1,W0.1,JL1.1\nL4.1\n[3.1\nI3.1,W0.1,JL1.1\nEND`
+    let nyuryokuTxt = `K2=0\r\nK3=1\r\nK4=0\r\nK7=0\r\nK30=0\r\nK43=0000\r\nK44=0\r\nK45=0\r\nK46=0\r\nK53=000\r\nK55=0\r\nK56=0\r\nK57=0\r\nK65=0\r\nK71=0\r\nK74=0\r\nK81=1\r\nK82=1\r\nL1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND`
+    // let nyuryokuTxt = `\r\nK81=1\r\nK82=1\r\nL1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND`
     return output + "END" + settingsCML + nyuryokuTxt
 }
 

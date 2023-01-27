@@ -24,7 +24,7 @@ export async function pressRun (cml) {
 
     // cml = "S1.1=100\nA1.1=100\nP1.1=100000\nB1.1\nS1.1,A1.1,P1.1"
     // cml = "S1.1=100\nA1.1=100\nP1.1=100000\nB1.1\nS1.1,A1.1,P1.1\nEND"
-    let cmlChunkList = cml.split('\n')
+    let cmlChunkList = cml.split('\r\n')
 
     const port = await navigator.serial.requestPort();
     await port.open({ baudRate: 38400 });

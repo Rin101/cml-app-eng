@@ -7,21 +7,21 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
 
     const settingsPanelData = {
         "kyoutuu": [
-            {"kNum":5, "name":"inposition", "label":"インポジション幅", "inputType":"text", "infoText":'インポジションと認識する幅を設定: 10.3 参照'},
+            {"kNum":5, "name":"inposition", "label":"In-position Range", "inputType":"text", "infoText":'Set the range for In-position.'},
         ],
         "oshituke": [
-            {"kNum":11, "name":"oshitukeDousaMode", "label":"押付け動作モード", "inputType":"dropdown", "inputs":["連続(片方向)","有限(片方向)","連続(両方向)","有限(両方向)",], "infoText":<>押付動作時の押付方向<br/>連続押付又は有限押付を設定<br/>():トルクが制限される方向<br/>片:動作方向に向かってのみトルク制限動作<br/>両:動作方向にかかわらずトルク制限動作</>},
-            {"kNum":12, "name":"oshitukeDousaTorque", "label":"押付け動作トルク", "inputType":"text", "infoText":<>コマンドＱ又はＺによる押付け動作時の<br/>トルク設定を定格トルクに対する％で設定します。</>},
-            {"kNum":13, "name":"oshitukeDousaTime", "label":"押付け動作保持時間", "inputType":"text", "infoText":'押付動作時間を設定8.6.2 参照'},
+            {"kNum":11, "name":"oshitukeDousaMode", "label":"Push Motion Operation Mode", "inputType":"dropdown", "inputs":["Continuous(One direction)","Set time(One direction)","Continuous(Both direction)","Set time(Both direction)",], "infoText":<>Set the direction and time for Push Motion<br/>():Direction to limit torque.<br/>One direction:Torque is limited only in operation direction.<br/>Both direction:Torque is limited in both directions</>},
+            {"kNum":12, "name":"oshitukeDousaTorque", "label":"Push Motion Torque", "inputType":"text", "infoText":<>Set the torque during pressing operation by command Q or Z in % of the rated torque.</>},
+            {"kNum":13, "name":"oshitukeDousaTime", "label":"Push Motion Holding Time", "inputType":"text", "infoText":'Set Push Motion Holding Time (Ref: 8.6.2)'},
         ],
         "genten": [
-            {"kNum":22, "name":"gentenShingou", "label":"原点信号源", "inputType":"dropdown", "inputs":["押当原点検出","押当原点検出(自)","原点センサ","原点センサ(自)"], "infoText":<>原点検出信号源と検出方法を設定<br/>原点センサは、入力点１にのみ割付可能<br/>（自）：電源 ON 時、自動原点検出動作を開始<br/>11.1 参照</>},
-            {"kNum":23, "name":"gentenSpeed", "label":"原点検出速度", "inputType":"text", "infoText":'原点検出動作時の速度を設定'},
-            {"kNum":24, "name":"gentenAccel", "label":"原点検出加速度", "inputType":"text", "infoText":'原点検出動作時の加速度を設定'},
-            {"kNum":25, "name":"gentenDirection", "label":"原点検出方向", "inputType":"dropdown", "inputs":["CW方向","CCW方向"], "infoText":'原点検出動作時の動作方向を設定'},
-            {"kNum":26, "name":"gentenOffset", "label":"原点オフセット距離", "inputType":"text", "infoText":<>検出した原点から座標原点までの<br/>オフセット量を設定</>},
-            {"kNum":27, "name":"gentenUnit", "label":"原点オフセット距離単位", "inputType":"dropdown", "inputs":["100","10","1"], "infoText":'オフセット設定時の単位を設定'},
-            {"kNum":28, "name":"gentenTorque", "label":"押当原点検出トルク", "inputType":"text", "infoText":<>押当原点検出時、機械ストッパを検出するトルクを<br/>定格トルクに対する比率で設定<br/>11.1.1 参照</>},
+            {"kNum":22, "name":"gentenShingou", "label":"Origin Signal Source", "inputType":"dropdown", "inputs":["Stopper Detection","Stopper Detection (Auto)","Origin Sensor","Origin Sensor(Auto)"], "infoText":<>Set the origin detection signal source and detection method. The origin sensor can be assigned only to input point 1.<br/>(Auto): Automatic origin detection operation starts when the power is turned on.<br/>Ref: 11.1</>},
+            {"kNum":23, "name":"gentenSpeed", "label":"Origin Detection Speed", "inputType":"text", "infoText":'Set the speed for Origin Detection'},
+            {"kNum":24, "name":"gentenAccel", "label":"Origin Detection Acceleration", "inputType":"text", "infoText":'Set the acceleration for Origin Detection'},
+            {"kNum":25, "name":"gentenDirection", "label":"Origin Detection Direction", "inputType":"dropdown", "inputs":["CW","CCW"], "infoText":'Set the direction for Origin Detection'},
+            {"kNum":26, "name":"gentenOffset", "label":"Origin Offset Distance", "inputType":"text", "infoText":<>Set offset amount from detected origin to coordinate origin</>},
+            {"kNum":27, "name":"gentenUnit", "label":"Unit of Origin Offset Distance", "inputType":"dropdown", "inputs":["100","10","1"], "infoText":'Set the unit when Offset is set'},
+            {"kNum":28, "name":"gentenTorque", "label":"Stopper Detection Torque", "inputType":"text", "infoText":<>Set the torque to detect a stopper for Origin Detection by percentage to rated torque<br/>Ref: 11.1.1</>},
         ],
     }
 
@@ -87,19 +87,19 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
             <div id="close-settings-panel" onClick={() => closePanel()}><i className="fas fa-times"></i></div>
             {/* content */}
             <div className='settings-panel-block'>
-                <p className='settings-panel-block-label'>共通設定</p>
+                <p className='settings-panel-block-label'>Common Settings</p>
                 <div className='settings-panel-block-contents'>
                     { settingsPanelData["kyoutuu"].map((item, i) => <SettingsPanelItem data={item} key={i}/>) }
                 </div>
             </div>
             <div className='settings-panel-block'>
-                <p className='settings-panel-block-label'>押付け動作設定</p>
+                <p className='settings-panel-block-label'>Push Motion Operation Settings</p>
                 <div className='settings-panel-block-contents'>
                     { settingsPanelData["oshituke"].map((item, i) => <SettingsPanelItem data={item} key={i} />) }
                 </div>
             </div>
             <div className='settings-panel-block'>
-                <p className='settings-panel-block-label'>原点検出設定</p>
+                <p className='settings-panel-block-label'>Origin Detection Settings</p>
                 <div className='settings-panel-block-contents'>
                     { settingsPanelData["genten"].map((item, i) => <SettingsPanelItem data={item} key={i} />) }
                 </div>
