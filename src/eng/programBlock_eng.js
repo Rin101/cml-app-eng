@@ -446,7 +446,7 @@ export const ProgramBlockEng = (props) => {
         let dousa_group_i = 0
         for (let dousa_group of programData) {
             pg_l_arr.push(<div className="pg-l-empty pglempgroup" key={"pglempty"+dousa_group_i}></div>)
-            main_grid.push(<div className="dousa-group-kaishi unselectable" style={{gridColumn:"1/"+(props.jiku+1)}} key={"dousagroup-"+dousa_group_i} id={"dousaGroup-"+dousa_group_i}><p>入力点{dousa_group_i+1}からの実行</p></div>)
+            main_grid.push(<div className="dousa-group-kaishi unselectable" style={{gridColumn:"1/"+(props.jiku+1)}} key={"dousagroup-"+dousa_group_i} id={"dousaGroup-"+dousa_group_i}><p>Execution #{dousa_group_i+1}</p></div>)
             main_grid.push(<div className="empty-right-box" key={"empRbox-"+dousa_group_i}></div>)
             let dontPutEmp = []
             let dousa_row_i = 0
