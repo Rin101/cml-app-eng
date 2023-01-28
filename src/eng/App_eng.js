@@ -176,6 +176,13 @@ export const AppEng = () => {
         )
     }
 
+    function jikkou() {
+        instructionPopupRef.current.style.display = "flex"
+        pressRun(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
+        setCmlOutput(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
+    }
+
+
     return (
         <div className="main">
             <PopUpOfInstruction />
@@ -184,6 +191,7 @@ export const AppEng = () => {
             <div className='top-menu-container'>
                 <TopMenuEng settings={settings} setSettings={setSettings} isMute={isMute} setIsMute={setIsMute} tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
             </div>
+            <div className='top-menu-spacer'></div>
             <div className="center-section">
                 <div className="command-list-width-box"></div>
                 <div className='command-list-container'>
@@ -202,7 +210,7 @@ export const AppEng = () => {
                 </div>
                 <div className='main-interface-section'>
                     <div className='program-block-container'>
-                        <ProgramBlockEng popupRef={instructionPopupRef} settings={settings} isMute={isMute} tkData={tannikannsannData} setTkData={setTannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
+                        <ProgramBlockEng settings={settings} isMute={isMute} tkData={tannikannsannData} setTkData={setTannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
                     </div>
                     <div className='cml-output-container'>
                         <div className="cml-output-section">
@@ -225,6 +233,12 @@ export const AppEng = () => {
                     </div>
                 </div>
             </div>
+            <div className='bottom-menu-container'>
+                <div className='bottom-menu'>
+                    <Button variant="contained" onClick={() => jikkou()}>モータに書き込む</Button>
+                </div>
+            </div>
+            <div className='bottom-menu-spacer'></div>
             {/* <div className="center-section">
                 <TopMenuEng tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
                 <ProgramBlockEng tkData={tannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>

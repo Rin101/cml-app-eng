@@ -403,6 +403,11 @@
   margin-right: 0.3rem;
 }
 
+.typedata-var-highlight {
+  font-weight: 600;
+  color: red;
+}
+
 .type-data-button {
   align-self: center;
 }
