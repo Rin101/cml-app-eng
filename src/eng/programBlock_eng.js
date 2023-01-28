@@ -406,6 +406,12 @@ export const ProgramBlockEng = (props) => {
         }
     }
 
+    function jikkou(popupRef) {
+        popupRef.current.style.display = "flex"
+        pressRun(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))
+        props.setCmlOutput(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))
+    }
+
     const dousaBoxRef = useRef()
 
     const dataToHTML = (programData) => {
@@ -552,7 +558,7 @@ export const ProgramBlockEng = (props) => {
         <div className="program-block">
             {dataToHTML(props.programData)}
             <div className="enter-button">
-                <Button variant="contained" onClick={() => pressRun(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))}>Write to Motor</Button>
+                <Button variant="contained" onClick={() => jikkou(props.popupRef)}>Write to Motor</Button>
                 <div style={{height:10,width:30}}></div>
                 {/* <Button variant="contained" onClick={() => stop()}>Stop</Button>
                 <div style={{height:10,width:30}}></div> */}

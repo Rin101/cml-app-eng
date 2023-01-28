@@ -158,10 +158,16 @@ export const AppEng = () => {
 
         return (
             <div className='popup-instruction' ref={instructionPopupRef}>
-                <div className='popup-content'>
+                <div className='popup-instruction' ref={instructionPopupRef}>
+                <div className='popup-container'>
                     <div id="close-instruction-popup" onClick={() => close()}><i className="fas fa-times-circle"></i></div>
-                    <img src={instructionImg} alt="instruction" />
+                    <div className='popup-content'>
+                        <p>Please reset the motor.</p>
+                    </div>
+                    {/* export to text file instruction */}
+                    {/* <img src={instructionImg} alt="instruction" /> */}
                 </div>
+            </div>
                 {/* <div className='popup-neveragain'>
                     <p style={{marginRight:10}}>次回から表示しない</p>
                     <input type={'checkbox'} />
@@ -196,7 +202,7 @@ export const AppEng = () => {
                 </div>
                 <div className='main-interface-section'>
                     <div className='program-block-container'>
-                        <ProgramBlockEng settings={settings} isMute={isMute} tkData={tannikannsannData} setTkData={setTannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
+                        <ProgramBlockEng popupRef={instructionPopupRef} settings={settings} isMute={isMute} tkData={tannikannsannData} setTkData={setTannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
                     </div>
                     <div className='cml-output-container'>
                         <div className="cml-output-section">

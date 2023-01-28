@@ -330,7 +330,7 @@ input[type]:focus,
 .dropdown-selector {
   display: flex;
   align-items: center;
-  z-index: 100;
+  z-index: 200;
 }
 
 .dropdown-selector {
@@ -426,8 +426,7 @@ input[type]:focus,
   min-height: calc(85vh - 1rem);
   padding: 0.5rem 1rem;
   display: flex;
-  justify-content: space-between;
-  /* justify-content: space-around; */
+  justify-content: start;
   align-items: center;
   flex-direction: column;
   position: relative;
@@ -538,7 +537,7 @@ input[type]:focus,
 
 /* ===== */
 .popup-instruction {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -552,11 +551,21 @@ input[type]:focus,
   justify-content: center;
 }
 
-.popup-content {
+.popup-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+}
+
+.popup-content {
+  background-color: white;
+  border-radius: 1rem;
+  height: 30vh;
+  min-width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup-instruction img {
