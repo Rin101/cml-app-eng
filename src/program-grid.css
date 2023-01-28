@@ -251,12 +251,19 @@
 .dousa-group-kaishi {
   /* grid-column: 1/4; */
   padding: 0.1rem 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  background-color: #1871CD;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
   border-radius: 0.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 1.5rem;
+
+  /* border: solid  #63656a 2px; */
 }
 
 .dousa-box,
