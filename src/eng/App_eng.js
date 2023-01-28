@@ -237,7 +237,7 @@ export const AppEng = () => {
             </div>
             <div className='bottom-menu-container'>
                 <div className='bottom-menu'>
-                    <Button variant="contained" onClick={() => jikkou()}>モータに書き込む</Button>
+                    <Button variant="contained" onClick={() => jikkou()}>Write to Motor</Button>
                 </div>
             </div>
             <div className='bottom-menu-spacer'></div>
