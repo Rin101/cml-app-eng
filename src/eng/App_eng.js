@@ -10,6 +10,8 @@ import { downloadFile } from '../menu';
 import soundfile1 from '../sounds/決定、ボタン押下38.mp3'
 import soundfile2 from '../sounds/決定、ボタン押下44.mp3'
 import instructionImg from '../image/popup-instruction.png'
+import { toCML } from '../toCml';
+import { pressRun } from '../serialPort';
 
 export const AppEng = () => {
 
