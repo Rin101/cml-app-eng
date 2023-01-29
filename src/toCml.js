@@ -1,4 +1,9 @@
 export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings) => {
+
+    let containsShuturyoku1 = false
+    let containsShuturyoku2 = false
+    let containsShuturyoku3 = false
+
     let output = ""
     let every_data_teigi = ""
     let every_program_teigi = ""
@@ -36,6 +41,33 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                             break
                         case "入力点からの実行":
                             isNyuryokuShingou = true
+                            break
+                        case "出力点1へ出力":
+                            if (containsShuturyoku1) {
+                                alert('エラー: 表を直してください\n出力点1への出力は1回しか使えません。')
+                            } else {
+                                every_data_teigi +="F1.1,F2.1,F3.1" + "\r\n"
+                                every_data_teigi +="O1.1" + "\r\n"
+                                containsShuturyoku1 = true
+                            }
+                            break  
+                        case "出力点2へ出力":
+                            if (containsShuturyoku2) {
+                                alert('エラー: 表を直してください\n出力点2への出力は1回しか使えません。')
+                            } else {
+                                every_data_teigi +="F1.1,F2.1,F3.1" + "\r\n"
+                                every_data_teigi +="O2.1" + "\r\n"
+                                containsShuturyoku2 = true
+                            }
+                            break
+                        case "出力点3へ出力":
+                            if (containsShuturyoku3) {
+                                alert('エラー: 表を直してください\n出力点3への出力は1回しか使えません。')
+                            } else {
+                                every_data_teigi +="F1.1,F2.1,F3.1" + "\r\n"
+                                every_data_teigi +="O3.1" + "\r\n"
+                                containsShuturyoku3 = true
+                            }
                             break
                         default:
                             alert('ERROR-表を直してください')

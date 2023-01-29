@@ -228,13 +228,13 @@ export const ProgramBlockEng = (props) => {
     }
 
     const showTypeData = (isLoop, parentId, jiku, dousaType, dousaNum) => {
-        if (!isLoop) {
+        if (isLoop) {
+            props.setLoopInputObj([parentId, false])
+            props.setInputBoxType("loop")
+        } else if (!dousaType.includes('出力点')) {
             const typeDataObj = [jiku, parentId, dousaType, dousaNum, false]
             props.setTypeDataObj(typeDataObj)
             props.setInputBoxType("typedata")
-        } else {
-            props.setLoopInputObj([parentId, false])
-            props.setInputBoxType("loop")
         }
     }
 
@@ -506,6 +506,15 @@ export const ProgramBlockEng = (props) => {
                                 break
                             case "入力点からの実行":
                                 dousaName = "Exec."
+                                break
+                            case "出力点1へ出力":
+                                dousaName = "出力点1へ出力"    
+                                break
+                            case "出力点2へ出力":
+                                dousaName = "出力点2へ出力"    
+                                break
+                            case "出力点2へ出力":
+                                dousaName = "出力点3へ出力"    
                                 break
                             default:
                                 dousaName = "PTP"
