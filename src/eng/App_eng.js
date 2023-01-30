@@ -6,7 +6,7 @@ import { Editor } from '../Editor';
 import { ProgramBlockEng, TypeDataInDousaEng, LoopInputBoxEng } from './programBlock_eng';
 import useLocalStorage from '../useLocalStorage';
 import { TopMenuEng } from './menu_eng';
-import { downloadFile } from '../menu';
+import { downloadFile } from './menu_eng';
 import soundfile1 from '../sounds/決定、ボタン押下38.mp3'
 import soundfile2 from '../sounds/決定、ボタン押下44.mp3'
 import instructionImg from '../image/popup-instruction.png'
