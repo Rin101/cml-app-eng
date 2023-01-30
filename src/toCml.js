@@ -13,6 +13,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
         let dousa_jikkou_of_group = ""
         for (let dousa_row of dousa_group) {
             let dousa_jikkou_row_arr = []
+            let shuturyoku_row = ""
             for (let dousa of dousa_row) {
                 if (dousa.length !== 0) {
                     const dousa_jiku = dousa_row.indexOf(dousa) + 1
@@ -43,29 +44,30 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                             isNyuryokuShingou = true
                             break
                         case "出力点1へ出力":
-                            if (containsShuturyoku1) {
-                                alert('エラー: 表を直してください\n出力点1への出力は1回しか使えません。')
-                            } else {
-                                every_data_teigi +="F1.1,F2.1,F3.1" + "\r\n"
-                                every_data_teigi +="O1.1" + "\r\n"
+                            if (!containsShuturyoku1) {
+                                shuturyoku_row += "F1.1,F2.1,F3.1" + "\r\n"
+                                shuturyoku_row += "O1.1" + "\r\n"
                                 containsShuturyoku1 = true
                             }
                             break  
                         case "出力点2へ出力":
-                            if (containsShuturyoku2) {
-                                alert('エラー: 表を直してください\n出力点2への出力は1回しか使えません。')
-                            } else {
-                                every_data_teigi +="F1.1,F2.1,F3.1" + "\r\n"
-                                every_data_teigi +="O2.1" + "\r\n"
+                            if (!containsShuturyoku2) {
+                                shuturyoku_row += "F1.1,F2.1,F3.1" + "\r\n"
+                                shuturyoku_row += "O2.1" + "\r\n"
                                 containsShuturyoku2 = true
                             }
                             break
                         case "出力点3へ出力":
-                            if (containsShuturyoku3) {
-                                alert('エラー: 表を直してください\n出力点3への出力は1回しか使えません。')
-                            } else {
-                                every_data_teigi +="F1.1,F2.1,F3.1" + "\r\n"
-                                every_data_teigi +="O3.1" + "\r\n"
+                            // if (containsShuturyoku3) {
+                            //     alert('エラー: 表を直してください\n出力点3への出力は1回しか使えません。')
+                            // } else {
+                            //     every_program_teigi +="F1.1,F2.1,F3.1" + "\r\n"
+                            //     every_program_teigi +="O3.1" + "\r\n"
+                            //     containsShuturyoku3 = true
+                            // }
+                            if (!containsShuturyoku3) {
+                                shuturyoku_row += "F1.1,F2.1,F3.1" + "\r\n"
+                                shuturyoku_row += "O3.1" + "\r\n"
                                 containsShuturyoku3 = true
                             }
                             break
@@ -86,24 +88,31 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                 }
             }
             if (dousa_jikkou_row_arr.length >= 1) {
-                dousa_jikkou_of_group += loop_start + dousa_jikkou_row_arr.join(",") + "\r\n" + loop_end
+                dousa_jikkou_of_group += loop_start + dousa_jikkou_row_arr.join(",") + "\r\n" + shuturyoku_row + loop_end
             } else {
-                dousa_jikkou_of_group += loop_start + loop_end
+                dousa_jikkou_of_group += loop_start + shuturyoku_row + loop_end
             }
         }
         every_program_teigi += dousa_jikkou_of_group
     }
 
     let settingsCML = "\r\n"
-    const kNumList = [5, 11, 12, 13, 14, 23, 24, 25, 26, 27, 28]
     const jikuNum = programData[0][0].length
 
     // 分解能のK値設定
+    const bunkainouValueList = [300, 600, 1000, 1200, 2000, 3000, 5000, 6000, 10000, 12000]
+    let bunkainouCML = 0
+    if ((typeof tkData[0]["bunkai"]) === "string") {
+        bunkainouCML = bunkainouValueList.indexOf(parseInt(tkData[0]["bunkai"])).toString()
+    } else {
+        bunkainouCML = bunkainouValueList.indexOf(tkData[0]["bunkai"]).toString()
+    }
     for (let i=1; i<=jikuNum; i++) {
-        settingsCML += ("K1."+i.toString()+"="+tkData[0]["bunkai"].toString()+"\r\n")
+        settingsCML += ("K1."+i.toString()+"="+bunkainouCML+"\r\n")
     }
 
     // 設定のK値設定
+    const kNumList = [5, 11, 12, 13, 14, 23, 24, 25, 26, 27, 28]
     for (let kNum of kNumList) {
         for (let i=1; i<=jikuNum; i++) {
             const value = settings["kNum"+kNum.toString()]
@@ -122,6 +131,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
             settingsCML += ("K"+kNum[0].toString()+"."+i.toString()+"="+kNum[1]+"\r\n")
         }
     }
+
     
     output += every_data_teigi
     output += every_program_teigi
