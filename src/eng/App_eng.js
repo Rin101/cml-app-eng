@@ -193,7 +193,7 @@ export const AppEng = () => {
             <div className='top-menu-container'>
                 <TopMenuEng settings={settings} setSettings={setSettings} isMute={isMute} setIsMute={setIsMute} tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
             </div>
-            <div className='top-menu-spacer'></div>
+            {/* <div className='top-menu-spacer'></div> */}
             <div className="center-section">
                 <div className="command-list-width-box"></div>
                 <div className='command-list-container'>

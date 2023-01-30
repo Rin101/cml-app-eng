@@ -24,10 +24,6 @@ a {
   text-decoration: none;
 }
 
-:root {
-  --bottom-menu-height: 15vh
-}
-
 /* ----------------- */
 
 textarea:focus,
@@ -50,7 +46,7 @@ input[type]:focus,
 
 /* ------- */
 .layer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -89,10 +85,9 @@ input[type]:focus,
 
 .command-list-container {
   width: 13%;
-  height: calc(85vh - var(--bottom-menu-height));
-  position: fixed;
-  padding: 0rem 0rem 0rem 1rem;
-  /* padding: 0rem 0rem 1rem 1rem; */
+  height: 85vh;
+  /* position: fixed; */
+  padding: 0rem 0rem 1rem 1rem;
 }
 
 .command-list {
@@ -111,10 +106,10 @@ input[type]:focus,
   align-items: center;
 }
 
-.command-list-width-box {
+/* .command-list-width-box {
   width: 13%;
   height: 85vh;
-}
+} */
 
 .command-selector {
   width: 80%;
@@ -157,16 +152,16 @@ input[type]:focus,
 .top-menu-container {
   min-height: 15vh;
   padding: 1rem 1rem;
-  position: fixed;
+  /* position: fixed; */
   background-color: #4b4b53;
   width: 100%;
-  z-index: 2000;
+  /* z-index: 2000; */
 }
-
+/* 
 .top-menu-spacer {
   height: 15vh;
   width: 100%;
-}
+} */
 
 .top-menu {
   height: calc(15vh - 2rem);
@@ -475,9 +470,10 @@ input[type]:focus,
 .jikkou-button {
   margin: 1rem auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: fit-content;
+  /* width: fit-content; */
+  width: 100%;
   font-size: 0.8rem;
   font-weight: bold;
 }
@@ -486,12 +482,12 @@ input[type]:focus,
   display: none;
 }
 
-.copy-cml-container {
+/* .copy-cml-container {
   position: absolute;
   top: 60%;
   right: 10%;
   z-index: 90;
-}
+} */
 
 .copy-cml {
   background-color: blue;
@@ -617,7 +613,7 @@ input[type]:focus,
   bottom: 0;
   background-color: #4b4b53;
   width: 100%;
-  z-index: 2000;
+  z-index: 150;
 }
 
 .bottom-menu-spacer {

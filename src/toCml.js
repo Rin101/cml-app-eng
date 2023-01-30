@@ -97,6 +97,13 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
     let settingsCML = "\r\n"
     const kNumList = [5, 11, 12, 13, 14, 23, 24, 25, 26, 27, 28]
     const jikuNum = programData[0][0].length
+
+    // 分解能のK値設定
+    for (let i=1; i<=jikuNum; i++) {
+        settingsCML += ("K1."+i.toString()+"="+tkData[0]["bunkai"].toString()+"\r\n")
+    }
+
+    // 設定のK値設定
     for (let kNum of kNumList) {
         for (let i=1; i<=jikuNum; i++) {
             const value = settings["kNum"+kNum.toString()]
@@ -105,6 +112,14 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
             } else {
                 settingsCML += ("K"+kNum.toString()+"."+i.toString()+"="+value+"\r\n")
             }
+        }
+    }
+
+    // 毎回設定されるK値
+    const constantKNumList = [[2, "0"], [3, "1"], [4, "0"], [7, "0"], [30, 0], [43, "0000"], [44, "0"], [45, "0"], [46, "0"], [53, "000"], [55, "0"], [56, "0"], [57, "0"], [65, "0"], [71, "0"], [74, "0"], [81, "1"], [82, "1"]]
+    for (let kNum of constantKNumList) {
+        for (let i=1; i<=jikuNum; i++) {
+            settingsCML += ("K"+kNum[0].toString()+"."+i.toString()+"="+kNum[1]+"\r\n")
         }
     }
     
@@ -116,9 +131,9 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
     // } else {
     //     return output + "END" + settingsCML
     // }
-    let nyuryokuTxt = `K2=0\r\nK3=1\r\nK4=0\r\nK7=0\r\nK30=0\r\nK43=0000\r\nK44=0\r\nK45=0\r\nK46=0\r\nK53=000\r\nK55=0\r\nK56=0\r\nK57=0\r\nK65=0\r\nK71=0\r\nK74=0\r\nK81=1\r\nK82=1\r\nL1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND`
+    let nyuryokuTxt = `L1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND`
     // let nyuryokuTxt = `\r\nK81=1\r\nK82=1\r\nL1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND`
-    return output + "END" + settingsCML + nyuryokuTxt
+    return output + "END" + settingsCML + nyuryokuTxt + "\r\n$."
 }
 
 const getPulseValue = (valueArr, tanniValue, divideVar=1) => {

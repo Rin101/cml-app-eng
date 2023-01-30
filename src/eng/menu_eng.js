@@ -68,7 +68,16 @@ export const TopMenuEng = (props) => {
     const handleFileSave = () => {
         let obj = {"name":"cml-import","data":{"jiku":props.jiku,"tannikannsannData":props.tannikannsannData,"programData":props.programData,"loopData":props.loopData,"isNyuryokuShingou":props.isNyuryokuShingou, "settings":props.settings}}
         const data = JSON.stringify(obj)
-        const filename = "CML-途中保存"
+
+        const date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes()
+        let currentDate = `${year}_${month}_${day}_${hour}_${minute}`
+
+        const filename = "CML_saved_" + currentDate
         const type = ".txt"
         downloadFile(data, filename, type)
     }
