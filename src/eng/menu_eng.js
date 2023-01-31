@@ -77,7 +77,7 @@ export const TopMenuEng = (props) => {
         let minute = date.getMinutes()
         let currentDate = `${year}_${month}_${day}_${hour}_${minute}`
 
-        const filename = "CML_saved_" + currentDate
+        const filename = "CML_" + currentDate
         const type = ".txt"
         downloadFile(data, filename, type)
     }
