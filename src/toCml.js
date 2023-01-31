@@ -112,11 +112,11 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
 
 
     const allKNumList = [
-        2, 3, 4, 5, 7, 11, 12, 13, 14, 23, 24, 25, 26, 27, 28, 30, 43, 44, 45, 46, 53, 55, 56, 57, 65, 71, 74, 81, 82
+        2, 3, 4, 5, 7, 11, 12, 13, 14, 22, 23, 24, 25, 26, 27, 28, 30, 43, 44, 45, 46, 53, 55, 56, 57, 65, 71, 74, 81, 82
     ]
 
     // 設定のK値設定
-    const kNumList = [5, 11, 12, 13, 14, 23, 24, 25, 26, 27, 28]
+    const kNumList = [5, 11, 12, 13, 14, 22, 23, 24, 25, 26, 27, 28]
     // 毎回設定されるK値
     const constantKNumList = [[2, "0"], [3, "1"], [4, "0"], [7, "0"], [30, 0], [43, "0000"], [44, "0"], [45, "0"], [46, "0"], [53, "111"], [55, "0"], [56, "0"], [57, "0"], [65, "0"], [71, "0"], [74, "0"], [81, "1"], [82, "1"]]
     
@@ -161,7 +161,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
 const getPulseValue = (valueArr, tanniValue, divideVar=1) => {
     let value = parseFloat(valueArr[0])
     const tanni = valueArr[1]
-    if (tanni.includes("pps") || tanni.includes("%") || tanni.includes('msec')) {
+    if (tanni.includes("pps") || tanni.includes("%") || tanni.includes('msec') || tanni.includes('Pulse')) {
         return Math.round(value)
     } else {
         return Math.round(value * tanniValue / divideVar)
