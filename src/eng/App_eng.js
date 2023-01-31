@@ -5,13 +5,14 @@ import '../program-grid.css'
 import { Editor } from '../Editor';
 import { ProgramBlockEng, TypeDataInDousaEng, LoopInputBoxEng } from './programBlock_eng';
 import useLocalStorage from '../useLocalStorage';
-import { TopMenuEng } from './menu_eng';
+import { Tannikannsann, TopMenuEng } from './menu_eng';
 import { downloadFile } from './menu_eng';
 import soundfile1 from '../sounds/決定、ボタン押下38.mp3'
 import soundfile2 from '../sounds/決定、ボタン押下44.mp3'
 import instructionImg from '../image/popup-instruction.png'
 import { toCML } from '../toCml';
 import { pressRun } from '../serialPort';
+import { SettingsPanel } from '../settingsPanel/settingsPanel';
 
 export const AppEng = () => {
 
@@ -184,16 +185,30 @@ export const AppEng = () => {
         setCmlOutput(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
     }
 
+    const closeTanni = () => {
+        document.querySelector('.tannikannsann-popup').style.display = "none"
+        // topMenuRef.current.querySelector('.tannikannsann-popup').style.display = "none"
+        layerRef.current.style.display = "none"
+    }
+
+    const closeSettingsPanel = () => {
+        document.querySelector('#settings-panel').style.display = "none"
+        // topMenuRef.current.querySelector('#settings-panel').style.display = "none"
+        layerRef.current.style.display = "none"
+    }
+
 
     return (
         <div className="main">
             <PopUpOfInstruction />
             <DataInputBox inputBoxType={inputBoxType} />
             <div ref={layerRef} className="layer"></div>
+            <Tannikannsann jiku={jiku} tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} application={"hi"} setApplication={"hi"} tanniValue={"hi"} setTanniValue={"hi"} topMenuRef={"hi"} closeTanni={closeTanni}/>
+            <SettingsPanel closePanel={closeSettingsPanel} settings={settings} setSettings={setSettings} />
             <div className='top-menu-container'>
                 <TopMenuEng settings={settings} setSettings={setSettings} isMute={isMute} setIsMute={setIsMute} tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
             </div>
-            {/* <div className='top-menu-spacer'></div> */}
+            <div className='top-menu-spacer'></div>
             <div className="center-section">
                 <div className="command-list-width-box"></div>
                 <div className='command-list-container'>
@@ -202,13 +217,13 @@ export const AppEng = () => {
                             {/* <div onMouseEnter={(e) => commandHover(e)} className="command-selector" id="dousaGroup-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Add Motion Group</div> */}
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="ichigime-selector" draggable="true"><i className="fas fa-grip-vertical"></i>PTP</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="oshituke-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Push</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="taima-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Timer</div>
-                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="kurikaeshi-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Loop</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="incremental-ichigime-selector" draggable="true"><i className="fas fa-grip-vertical"></i>PTP+</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="incremental-oshituke-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Push+</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="taima-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Timer</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="shutsuryoku1" draggable="true"><i className="fas fa-grip-vertical"></i>出力点1へ出力</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="shutsuryoku2" draggable="true"><i className="fas fa-grip-vertical"></i>出力点2へ出力</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="shutsuryoku3" draggable="true"><i className="fas fa-grip-vertical"></i>出力点3へ出力</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="kurikaeshi-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Loop</div>
                             {/* <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="nyuryokuten-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Execution from Input signal</div> */}
                         </div>
                     </div>
