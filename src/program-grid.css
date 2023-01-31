@@ -29,6 +29,7 @@
   margin: calc(0.2rem + 0.4rem) 0;
   border-radius: 0.2rem;
   background-color: #e7e7eb;
+  border: solid #c2c2c2 5px;
 }
 
 .pg-l-loop {

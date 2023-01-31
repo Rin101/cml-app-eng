@@ -142,6 +142,24 @@ input[type]:focus,
   font-size: 0.5rem;
 }
 
+#kurikaeshi-selector {
+  background-color: #E7E7EB !important;
+  background-image: none;
+  color: #585b60;
+  border: solid #c2c2c2 5px;
+}
+
+#kurikaeshi-selector:hover {
+  transition: ease-in-out 0.15s;
+  opacity: 0.4;
+}
+
+#kurikaeshi-selector i {
+  color: #585b60;
+  margin-right: 0.5rem;
+  font-size: 0.5rem;
+}
+
 /* ------------------------------- */
 .center-section {
   display: flex;
