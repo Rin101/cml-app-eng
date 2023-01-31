@@ -565,7 +565,7 @@ export const ProgramBlockEng = (props) => {
                 {/* <div style={{height:10,width:30}}></div> */}
                 {/* <Button variant="contained" onClick={() => stop()}>Stop</Button>
                 <div style={{height:10,width:30}}></div> */}
-                <Button style={{backgroundColor:"orange"}} color="primary" variant="contained" onClick={() => props.setCmlOutput(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))}>Convert to CML</Button>
+                <Button color="primary" variant="contained" onClick={() => props.setCmlOutput(toCML(props.programData, props.loopData, props.isNyuryokuShingou, props.tkData, props.settings))}>Convert to CML</Button>
             </div>
         </div>
     )

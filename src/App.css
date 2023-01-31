@@ -642,7 +642,8 @@ input[type]:focus,
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: orange;
+  background-color: #1976D2;
+  /* background-color: orange; */
   border-radius: 0.4rem;
   cursor: pointer;
 }
