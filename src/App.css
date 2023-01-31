@@ -24,6 +24,11 @@ a {
   text-decoration: none;
 }
 
+:root {
+  --topMenuHeight: 100px;
+  --bottomMenuHeight: 100px;
+}
+
 /* ----------------- */
 
 textarea:focus,
@@ -85,9 +90,10 @@ input[type]:focus,
 
 .command-list-container {
   width: 13%;
-  height: 85vh;
+  height: calc(100vh - (var(--topMenuHeight) + var(--bottomMenuHeight)));
+  /* height: 85vh; */
   /* position: fixed; */
-  padding: 0rem 0rem 1rem 1rem;
+  padding: 0rem 0rem 0rem 1rem;
 }
 
 .command-list {
@@ -139,18 +145,21 @@ input[type]:focus,
 .center-section {
   display: flex;
   width: 100%;
-  min-height: 85vh;
+  /* min-height: 85vh; */
+  min-height: calc(100vh - (var(--topMenuHeight) + var(--bottomMenuHeight)));
 }
 
 .main-interface-section {
   display: flex;
   width: 87%;
-  min-height: 85vh;
+  /* min-height: 85vh; */
+  min-height: calc(100vh - (var(--topMenuHeight) + var(--bottomMenuHeight)));
 }
 
 /* ------------------------ */
 .top-menu-container {
-  min-height: 15vh;
+  /* min-height: 15vh; */
+  height: var(--topMenuHeight);
   padding: 1rem 1rem;
   /* position: fixed; */
   background-color: #4b4b53;
@@ -164,7 +173,7 @@ input[type]:focus,
 } */
 
 .top-menu {
-  height: calc(15vh - 2rem);
+  height: calc(var(--topMenuHeight) - 2rem);
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -607,7 +616,8 @@ input[type]:focus,
 /* ========================== */
 
 .bottom-menu-container {
-  min-height: 15vh;
+  /* min-height: 15vh; */
+  height: var(--bottomMenuHeight);
   padding: 0.5rem 1rem;
   position: fixed;
   bottom: 0;
@@ -622,11 +632,22 @@ input[type]:focus,
 }
 
 .bottom-menu {
-  height: calc(15vh - 1rem);
+  height: calc(var(--bottomMenuHeight) - 1rem);
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: white;
+  background-color: orange;
   border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.bottom-menu:hover {
+  opacity: 0.7;
+}
+
+#bottom-menu-button-text {
+  font-weight: 500;
+  color: white;
+  font-size: 20px;
 }

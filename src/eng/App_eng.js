@@ -25,7 +25,7 @@ export const AppEng = () => {
     const [jiku, setJiku] = useState(1)
     let initialTannikannsannData = []
     for (let i=0; i < jiku; i++) {
-        initialTannikannsannData.push({kikou: "initial", susumiryou: [1,1], gensoku: [1,1], bunkai: 300, tanniValue:1})
+        initialTannikannsannData.push({kikou: "initial", susumiryou: [1,1], gensoku: [1,1], bunkai: "1000", tanniValue:1})
     }
     const [tannikannsannData, setTannikannsannData] = useState(initialTannikannsannData)
     // const [programData, setProgramData] = useState([[[["位置決め", 1, [[100, "pps"], [100, "pps"], [100, "pps"]]],[],[]],[[],[],[]],[[],[],[]]]])
@@ -239,8 +239,9 @@ export const AppEng = () => {
                 </div>
             </div>
             <div className='bottom-menu-container'>
-                <div className='bottom-menu'>
-                    <Button variant="contained" onClick={() => jikkou()}>Write to Motor</Button>
+                <div className='bottom-menu' onClick={() => jikkou()}>
+                    {/* <Button variant="contained" onClick={() => jikkou()}>Write to Motor</Button> */}
+                    <p id='bottom-menu-button-text'>Write to Motor</p>
                 </div>
             </div>
             <div className='bottom-menu-spacer'></div>
