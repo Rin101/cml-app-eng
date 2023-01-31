@@ -10,36 +10,39 @@ function str2ab(str) {
 export async function pressRun (cml) {
     // const port = await navigator.serial.requestPort();
     // await port.open({ baudRate: 38400 });
-    // const writer = port.writable.getWriter();
+    // let writer = await port.writable.getWriter();
     // await writer.write(str2ab('S.1=100\r\n'));
+    // await writer.releaseLock();
+    // writer = await port.writable.getWriter();
     // await writer.write(str2ab('A.1=100\r\n'));
+    // await writer.releaseLock();
+    // writer = await port.writable.getWriter();
     // await writer.write(str2ab('P.1=100000\r\n'));
+    // await writer.releaseLock();
+    // writer = await port.writable.getWriter();
     // await writer.write(str2ab('^.1\r\n'));
+    // await writer.releaseLock();
     // // ==============
     // // await writer.write(str2ab('P.1=0\r\n'));
     // // await writer.write(str2ab('^.1\r\n'));
-    // writer.releaseLock();
+    // // await writer.releaseLock();
     // await port.close();
 
-
-    // cml = "S1.1=100\nA1.1=100\nP1.1=100000\nB1.1\nS1.1,A1.1,P1.1"
-    // cml = "S1.1=100\nA1.1=100\nP1.1=100000\nB1.1\nS1.1,A1.1,P1.1\nEND"
     let cmlChunkList = cml.split('\r\n')
 
     const port = await navigator.serial.requestPort();
     await port.open({ baudRate: 38400 });
-    const writer = port.writable.getWriter();
     for (let cmlChunk of cmlChunkList) {
         if (cmlChunk.length > 0) {
+            const writer = await port.writable.getWriter();
             await writer.write(str2ab(cmlChunk + '\r\n'));
+            await writer.releaseLock();
             console.log(cmlChunk + '\r\n')
         }
     }
-    // await writer.write(str2ab('END\r\n'));
-    await writer.write(str2ab('[1.1' + '\r\n'));
-    console.log('[1.1\r\n');
-    // await writer.write(str2ab('^.1\r\n'));
-    writer.releaseLock();
+    // const writer = await port.writable.getWriter();
+    // await writer.write(str2ab('[1.1\r\n'));
+    // await writer.releaseLock();
     await port.close();
 }
 
