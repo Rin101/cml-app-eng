@@ -138,7 +138,16 @@ export const AppEng = () => {
 
     const handleFileExport = () => {
         const data = cmlOutput
-        const filename = "CML-保存"
+        // 日付と時刻
+        const date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes()
+        let currentDate = `${year}_${month}_${day}_${hour}_${minute}`
+
+        const filename = "CML_" + currentDate
         const type = ".txt"
         downloadFile(data, filename, type)
     }
