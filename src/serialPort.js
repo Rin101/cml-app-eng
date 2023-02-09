@@ -28,16 +28,17 @@ export async function pressRun (cml) {
     // // await writer.releaseLock();
     // await port.close();
 
-    let cmlChunkList = cml.split('\r\n')
-
+    let cmlChunkList = cml.split('\n')
+    
     const port = await navigator.serial.requestPort();
     await port.open({ baudRate: 38400 });
     for (let cmlChunk of cmlChunkList) {
-        if (cmlChunk.length > 0) {
+        let editedCmlChunk = cmlChunk.replace(/[\n\r]+/g, '');
+        editedCmlChunk = editedCmlChunk.replace(/\s+/g, '');
+        if (editedCmlChunk.length > 0) {
             const writer = await port.writable.getWriter();
-            await writer.write(str2ab(cmlChunk + '\r\n'));
+            await writer.write(str2ab(editedCmlChunk + '\r\n'));
             await writer.releaseLock();
-            // console.log(cmlChunk + '\r\n')
         }
     }
     // const writer = await port.writable.getWriter();
