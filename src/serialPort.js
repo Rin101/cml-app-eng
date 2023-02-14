@@ -65,7 +65,7 @@ export async function stop() {
     // await writer.write(str2ab('].1' + '\r\n'));
     // await writer.write(str2ab(']L' + '\r\n'));
     await writer.write(str2ab('L1.1' + '\r\n'));
-    await writer.write(str2ab('END' + '\r\n'));
+    await writer.write(str2ab('END.1' + '\r\n'));
     await writer.write(str2ab('$.1' + '\r\n'));
     writer.releaseLock();
     await port.close();
