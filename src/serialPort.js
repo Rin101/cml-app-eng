@@ -7,6 +7,10 @@ function str2ab(str) {
     return buf;
 }
 
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 export async function pressRun (cml) {
     // const port = await navigator.serial.requestPort();
     // await port.open({ baudRate: 38400 });
@@ -44,6 +48,7 @@ export async function pressRun (cml) {
     // const writer = await port.writable.getWriter();
     // await writer.write(str2ab('[1.1\r\n'));
     // await writer.releaseLock();
+    await delay(500);
     await port.close();
 }
 
