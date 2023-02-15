@@ -16,7 +16,8 @@ import { SettingsPanel } from '../settingsPanel/settingsPanel';
 
 export const AppEng = () => {
 
-    const [cmlOutput, setCmlOutput] = useLocalStorage('CML', '')
+    // const [cmlOutput, setCmlOutput] = useLocalStorage('CML', '')
+    const [cmlOutput, setCmlOutput] = useState('')
     const [isNyuryokuShingou, setIsNyuryokuShingou] = useState(false)
     const [settings, setSettings] = useLocalStorage('kNum', {
         'kNum5': 5, 'kNum11': 0, 'kNum12': 30, 'kNum13': 200, 'kNum14': 0, 'kNum22': 0,
@@ -188,11 +189,17 @@ export const AppEng = () => {
         )
     }
 
-    function jikkou() {
-        instructionPopupRef.current.style.display = "flex"
-//         pressRun(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
-//         setCmlOutput(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
-        pressRun(cmlOutput)
+    async function jikkou() {
+        // setCmlOutput(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
+        // pressRun(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
+        if (cmlOutput.length > 0) {
+            await pressRun(cmlOutput)
+            setTimeout(() => {
+                instructionPopupRef.current.style.display = "flex"
+            }, 500);   
+        } else {
+            alert("CMLに変換してください。")
+        }
     }
 
     const closeTanni = () => {
