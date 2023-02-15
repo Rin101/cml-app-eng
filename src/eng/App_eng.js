@@ -90,6 +90,18 @@ export const AppEng = () => {
             case "nyuryokuten-selector":
                 setCurrentDraggedCommand("入力点からの実行")
                 break
+            case "shutsuryoku1":
+                setCurrentDraggedCommand("出力点1へ出力")
+                break
+            case "shutsuryoku2":
+                setCurrentDraggedCommand("出力点2へ出力")
+                break
+            case "shutsuryoku3":
+                setCurrentDraggedCommand("出力点3へ出力")
+                break            
+            case "gentenfukki":
+                setCurrentDraggedCommand("原点復帰")
+                break      
             case "kurikaeshi-selector":
                 setCurrentDraggedCommand("繰り返し")
                 break
@@ -240,6 +252,7 @@ export const AppEng = () => {
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="shutsuryoku1" draggable="true"><i className="fas fa-grip-vertical"></i>出力点1へ出力</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="shutsuryoku2" draggable="true"><i className="fas fa-grip-vertical"></i>出力点2へ出力</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="shutsuryoku3" draggable="true"><i className="fas fa-grip-vertical"></i>出力点3へ出力</div>
+                            <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="gentenfukki" draggable="true"><i className="fas fa-grip-vertical"></i>原点復帰</div>
                             <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="kurikaeshi-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Loop</div>
                             {/* <div ref={commandSelectorRef} onDragStart={(e) => commandDragStart(e)} onMouseEnter={(e) => commandHover(e)} className="command-selector" id="nyuryokuten-selector" draggable="true"><i className="fas fa-grip-vertical"></i>Execution from Input signal</div> */}
                         </div>

@@ -70,6 +70,9 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                                 alert('エラー: 表を直してください\n出力点3への出力は1回しか使えません。')
                             }
                             break
+                        case "原点復帰":
+                            every_data_teigi += "P." + dousa_jiku.toString() + "=0"+"\r\n"
+                            break       
                         default:
                             alert('ERROR-表を直してください')
                             break

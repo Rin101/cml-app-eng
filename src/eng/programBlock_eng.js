@@ -231,7 +231,7 @@ export const ProgramBlockEng = (props) => {
         if (isLoop) {
             props.setLoopInputObj([parentId, false])
             props.setInputBoxType("loop")
-        } else if (!dousaType.includes('出力点')) {
+        } else if (!dousaType.includes('出力点') && !dousaType.includes('原点復帰')) {
             const typeDataObj = [jiku, parentId, dousaType, dousaNum, false]
             props.setTypeDataObj(typeDataObj)
             props.setInputBoxType("typedata")
@@ -513,17 +513,20 @@ export const ProgramBlockEng = (props) => {
                             case "出力点2へ出力":
                                 dousaName = "出力点2へ出力"    
                                 break
-                            case "出力点2へ出力":
+                            case "出力点3へ出力":
                                 dousaName = "出力点3へ出力"    
                                 break
+                            case "原点復帰":
+                                dousaName = "原点復帰"
+                                break    
                             default:
                                 dousaName = "PTP"
                                 break
                         }
-                        if (noValueArr.length > 0) {
+                        if (noValueArr.length > 0 && (!dousa[0].includes("出力点")) && (!dousa[0].includes("原点復帰"))) {
                             main_grid.push(<div ref={dousaBoxRef} className="dousa-box unselectable" draggable="true" onDragStart={(e) => emptyBoxDragStart(e)} onDragEnd={(e) => emptyBoxDragEnd(e)} onMouseEnter={(e) => props.setCurrentDraggedCommand(e.currentTarget.id)} key={dousa_group_i+"dousabox"+dousa_row_i+"-"+dousa_i} id={dousaId}><div className='no-value-circle'></div><p className='dousa-title' onClick={() => showTypeData(false, dousaId, jikuOfDousa, dousa[0], dousa[1])} >{dousaName}<span style={{marginRight:'0.2rem'}}></span>#{dousa[1]}</p><i className="fas fa-trash" onClick={(e) => trashInput(e, props.programData, props.setProgramData)}></i></div>)
                         } else {
-                            main_grid.push(<div ref={dousaBoxRef} className="dousa-box unselectable" draggable="true" onDragStart={(e) => emptyBoxDragStart(e)} onDragEnd={(e) => emptyBoxDragEnd(e)} onMouseEnter={(e) => props.setCurrentDraggedCommand(e.currentTarget.id)} key={dousa_group_i+"dousabox"+dousa_row_i+"-"+dousa_i} id={dousaId}><p className='dousa-title' onClick={() => showTypeData(false, dousaId, jikuOfDousa, dousa[0], dousa[1])} >{dousaName}<span style={{marginRight:'0.2rem'}}></span>#{dousa[1]}</p><i className="fas fa-trash" onClick={(e) => trashInput(e, props.programData, props.setProgramData)}></i></div>)
+                            main_grid.push(<div ref={dousaBoxRef} className="dousa-box unselectable" draggable="true" onDragStart={(e) => emptyBoxDragStart(e)} onDragEnd={(e) => emptyBoxDragEnd(e)} onMouseEnter={(e) => props.setCurrentDraggedCommand(e.currentTarget.id)} key={dousa_group_i+"dousabox"+dousa_row_i+"-"+dousa_i} id={dousaId}><p className='dousa-title' onClick={() => showTypeData(false, dousaId, jikuOfDousa, dousa[0], dousa[1])} >{dousaName}<span style={{marginRight:'0.2rem'}}></span>{((dousa[0].includes("出力点")) || (dousa[0].includes("原点復帰")))? "" : "#"+dousa[1]}</p><i className="fas fa-trash" onClick={(e) => trashInput(e, props.programData, props.setProgramData)}></i></div>)
                         }
                     } else {
                         // main_grid.push(<div className="dousa-box"></div>)
