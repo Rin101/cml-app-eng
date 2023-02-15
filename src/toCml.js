@@ -71,7 +71,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                             }
                             break
                         case "原点復帰":
-                            every_data_teigi += "P." + dousa_jiku.toString() + "=0"+"\r\n"
+                            every_data_teigi += "|." + dousa_jiku.toString() + "=0"+"\r\n"
                             break       
                         default:
                             alert('ERROR-表を直してください')
