@@ -11,6 +11,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
         let dousa_group_index = programData.indexOf(dousa_group) + 1
         every_program_teigi += "B" + dousa_group_index.toString() + ".1\r\n"
         let dousa_jikkou_of_group = ""
+        let gentenfukki = ""
         for (let dousa_row of dousa_group) {
             let dousa_jikkou_row_arr = []
             let shuturyoku_row = ""
@@ -71,7 +72,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                             }
                             break
                         case "原点復帰":
-                            every_data_teigi += "|." + dousa_jiku.toString() + "=0"+"\r\n"
+                            gentenfukki += "|." + dousa_jiku.toString() + "\r\n"
                             break       
                         default:
                             alert('ERROR-表を直してください')
@@ -90,9 +91,9 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                 }
             }
             if (dousa_jikkou_row_arr.length >= 1) {
-                dousa_jikkou_of_group += loop_start + dousa_jikkou_row_arr.join(",") + "\r\n" + shuturyoku_row + loop_end
+                dousa_jikkou_of_group += loop_start + dousa_jikkou_row_arr.join(",") + "\r\n" + shuturyoku_row + gentenfukki + loop_end
             } else {
-                dousa_jikkou_of_group += loop_start + shuturyoku_row + loop_end
+                dousa_jikkou_of_group += loop_start + shuturyoku_row + gentenfukki + loop_end
             }
         }
         every_program_teigi += dousa_jikkou_of_group
