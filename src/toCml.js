@@ -11,10 +11,10 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
         let dousa_group_index = programData.indexOf(dousa_group) + 1
         every_program_teigi += "B" + dousa_group_index.toString() + ".1\r\n"
         let dousa_jikkou_of_group = ""
-        let gentenfukki = ""
         for (let dousa_row of dousa_group) {
             let dousa_jikkou_row_arr = []
             let shuturyoku_row = ""
+            let gentenfukki = ""
             for (let dousa of dousa_row) {
                 if (dousa.length !== 0) {
                     const dousa_jiku = dousa_row.indexOf(dousa) + 1
