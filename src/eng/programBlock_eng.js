@@ -516,6 +516,9 @@ export const ProgramBlockEng = (props) => {
                             case "出力点3へ出力":
                                 dousaName = "出力点3へ出力"    
                                 break
+                            case "出力点を全てOFF":
+                                dousaName = "出力点を全てOFF"    
+                                break
                             case "原点復帰":
                                 dousaName = "原点復帰"
                                 break    

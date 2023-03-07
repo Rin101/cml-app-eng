@@ -3,6 +3,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
     let containsShuturyoku1 = false
     let containsShuturyoku2 = false
     let containsShuturyoku3 = false
+    let containsShuturyokuOff = false
 
     let output = ""
     let every_data_teigi = ""
@@ -46,7 +47,6 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                             break
                         case "出力点1へ出力":
                             if (!containsShuturyoku1) {
-                                every_program_teigi += "F1.1,F2.1,F3.1\r\n"
                                 shuturyoku_row += "O1.1\r\n"
                                 containsShuturyoku1 = true
                             } else {
@@ -55,7 +55,6 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                             break  
                         case "出力点2へ出力":
                             if (!containsShuturyoku2) {
-                                every_program_teigi += "F1.1,F2.1,F3.1\r\n"
                                 shuturyoku_row += "O2.1\r\n"
                                 containsShuturyoku2 = true
                             } else {
@@ -64,16 +63,25 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                             break
                         case "出力点3へ出力":
                             if (!containsShuturyoku3) {
-                                every_program_teigi += "F1.1,F2.1,F3.1\r\n"
                                 shuturyoku_row += "O3.1\r\n"
                                 containsShuturyoku3 = true
                             } else {
                                 alert('エラー: 表を直してください\n出力点3への出力は1回しか使えません。')
                             }
                             break
+                        case "出力点を全てOFF":
+                            if (!containsShuturyokuOff) {
+                                every_program_teigi += "F1.1,F2.1,F3.1\r\n"
+                                shuturyoku_row += "O3.1\r\n"
+                                containsShuturyoku3 = true
+                            } else {
+                                alert('エラー: 表を直してください\n出力点を全てOFFは1回しか使えません。')
+                            }
+                            break   
                         case "原点復帰":
                             gentenfukki += "|." + dousa_jiku.toString() + "\r\n"
-                            break       
+                            console.log("hi")
+                            break    
                         default:
                             alert('ERROR-表を直してください')
                             break
