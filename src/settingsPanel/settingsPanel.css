@@ -68,6 +68,12 @@
       font-size: 0.7rem;
   }
   
+  .settings-panel-item-tanni {
+      margin-left: 0.2rem;
+      font-size: 0.7rem;
+      color: rgba(0, 0, 0, 0.7);
+  }
+  
   /* ======= */
   .settings-panel-item-info-container {
       margin: 0 0.3rem;
@@ -95,6 +101,32 @@
   }
   
   .settings-panel-item-info-box p {
+      height: max-content;
+  }
+  
+  /* ======= */
+  .settings-panel-default-info-container {
+      margin: 0 0.3rem;
+      cursor: pointer;
+  }
+  
+  .settings-panel-default-info-box {
+      z-index: 100;
+      display: none;
+      width: max-content;
+      min-height: fit-content;
+      position: absolute;
+      top: -600%;
+      right: 20%;
+      font-size: 0.7rem;
+      font-weight: normal;
+      padding: 0.2rem 0.3rem;
+      color: white;
+      background-color: #585b60;
+      border-radius: 0.2rem;
+  }
+  
+  .settings-panel-default-info-box p {
       height: max-content;
   }
   

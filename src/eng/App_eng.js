@@ -186,20 +186,14 @@ export const AppEng = () => {
 
         return (
             <div className='popup-instruction' ref={instructionPopupRef}>
-                <div className='popup-instruction' ref={instructionPopupRef}>
                 <div className='popup-container'>
                     <div id="close-instruction-popup" onClick={() => close()}><i className="fas fa-times-circle"></i></div>
                     <div className='popup-content'>
-                        <p>Please reset the motor.</p>
+                        <p>モータへの書き込みが完了しました。<br/>モータの電源を再投入すると、入力点からの制御が可能になります。</p>
                     </div>
                     {/* export to text file instruction */}
                     {/* <img src={instructionImg} alt="instruction" /> */}
                 </div>
-            </div>
-                {/* <div className='popup-neveragain'>
-                    <p style={{marginRight:10}}>次回から表示しない</p>
-                    <input type={'checkbox'} />
-                </div> */}
             </div>
         )
     }

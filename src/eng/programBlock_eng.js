@@ -10,6 +10,7 @@ export const ProgramBlockEng = (props) => {
     const pgEmptyBox = useRef()
 
     const [dousaNumArr, setDousaNumArr] = useState([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    const [timerNumArr, setTimerNumArr] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
 
     const trashInput = (e, programData, setProgramData) => {
         const indexArr = e.target.parentNode.id.split('-')
@@ -268,27 +269,42 @@ export const ProgramBlockEng = (props) => {
     }
 
     function emptyBoxDragDrop(e) {
-        const indexArr = e.target.id.split('-')
-        indexArr.shift()
-        let tmp = [...props.programData]
-        let audio = new Audio(soundfile2);
-        if (props.currentDraggedCommand !== "繰り返し" && props.currentDraggedCommand !== "動作グループを追加" && props.currentDraggedCommand !== "NOPE" && !props.currentDraggedCommand.includes("-")) {
-            tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = [props.currentDraggedCommand, dousaNumArr[parseFloat(indexArr[2])]+1, [["Enter value here", "pps"], ["Enter value here", "pps"], ["Enter value here", "pps"]]]
-            let tmpDousaNumArr = [...dousaNumArr]
-            tmpDousaNumArr[parseFloat(indexArr[2])] += 1
-            setDousaNumArr(tmpDousaNumArr)
-            props.setProgramData(tmp)
-            if (!props.isMute) {
-                audio.play();
-            }
-        } else if (props.currentDraggedCommand.includes("-")) {
-            let draggedIndexArr = props.currentDraggedCommand.split("-")
-            draggedIndexArr.shift()
-            tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = tmp[parseFloat(draggedIndexArr[0])][parseFloat(draggedIndexArr[1])][parseFloat(draggedIndexArr[2])]
-            tmp[parseFloat(draggedIndexArr[0])][parseFloat(draggedIndexArr[1])][parseFloat(draggedIndexArr[2])] = []
-            props.setProgramData(tmp)
-            if (!props.isMute) {
-                audio.play();
+        function emptyBoxDragDrop(e) {
+            const indexArr = e.target.id.split('-')
+            indexArr.shift()
+            let tmp = [...props.programData]
+            let audio = new Audio(soundfile2);
+            if (props.currentDraggedCommand !== "タイマ" && props.currentDraggedCommand !== "繰り返し" && props.currentDraggedCommand !== "動作グループを追加" && props.currentDraggedCommand !== "NOPE" && !props.currentDraggedCommand.includes("-")) {
+                tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = [props.currentDraggedCommand, dousaNumArr[parseFloat(indexArr[2])]+1, [["数値を入力してください", "pps"], ["数値を入力してください", "pps"], ["数値を入力してください", "pps"]]]
+                let tmpDousaNumArr = [...dousaNumArr]
+                tmpDousaNumArr[parseFloat(indexArr[2])] += 1
+                setDousaNumArr(tmpDousaNumArr)
+                props.setProgramData(tmp)
+                if (!props.isMute) {
+                    audio.play();
+                }
+            } else if (props.currentDraggedCommand == "タイマ") {
+                if (timerNumArr[parseFloat(indexArr[2])] > 14) {
+                    alert("タイマは15個までしか設定できません。")
+                } else {
+                    tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = [props.currentDraggedCommand, timerNumArr[parseFloat(indexArr[2])]+1, [["数値を入力してください", "pps"], ["数値を入力してください", "pps"], ["数値を入力してください", "pps"]]]
+                    let tmpTimerNumArr = [...timerNumArr]
+                    tmpTimerNumArr[parseFloat(indexArr[2])] += 1
+                    setTimerNumArr(tmpTimerNumArr)
+                    props.setProgramData(tmp)
+                    if (!props.isMute) {
+                        audio.play();
+                    }
+                }
+            } else if (props.currentDraggedCommand.includes("-")) {
+                let draggedIndexArr = props.currentDraggedCommand.split("-")
+                draggedIndexArr.shift()
+                tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = tmp[parseFloat(draggedIndexArr[0])][parseFloat(draggedIndexArr[1])][parseFloat(draggedIndexArr[2])]
+                tmp[parseFloat(draggedIndexArr[0])][parseFloat(draggedIndexArr[1])][parseFloat(draggedIndexArr[2])] = []
+                props.setProgramData(tmp)
+                if (!props.isMute) {
+                    audio.play();
+                }
             }
         }
     }
@@ -610,9 +626,9 @@ export const TypeDataInDousaEng = (props) => {
             ["Accel. Data", ["kpps\u00b2"], ""],
             ["Position Data", ["Pulse"], ""],
         ] : [
-            ["Speed Data", ["100pps", subTanni+"/s"], ""],
-            ["Accel. Data", ["kpps\u00b2", subTanni+"/s\u00b2"], ""],
-            ["Position Data", ["Pulse", subTanni], ""],
+            ["Speed Data", [subTanni+"/s", "100pps"], ""],
+            ["Accel. Data", [subTanni+"/s\u00b2", "kpps\u00b2"], ""],
+            ["Position Data", [subTanni, "Pulse"], ""],
         ]
     }
     const incrementalIchigimeData = {
@@ -622,9 +638,9 @@ export const TypeDataInDousaEng = (props) => {
             ["Accel. Data", ["kpps\u00b2"], ""],
             ["Position Data", ["Pulse"], ""],
         ] : [
-            ["Speed Data", ["100pps", subTanni+"/s"], ""],
-            ["Accel. Data", ["kpps\u00b2", subTanni+"/s\u00b2"], ""],
-            ["Position Data", ["Pulse", subTanni], ""],
+            ["Speed Data", [subTanni+"/s", "100pps"], ""],
+            ["Accel. Data", [subTanni+"/s\u00b2", "kpps\u00b2"], ""],
+            ["Position Data", [subTanni, "Pulse"], ""],
         ]
     }
     const oshitukeData = {
@@ -634,9 +650,9 @@ export const TypeDataInDousaEng = (props) => {
             ["Accel. Data", ["kpps\u00b2"], ""],
             ["Position Data", ["Pulse"], ""],
         ] : [
-            ["Speed Data", ["100pps", subTanni+"/s"], ""],
-            ["Accel. Data", ["kpps\u00b2", subTanni+"/s\u00b2"], ""],
-            ["Position Data", ["Pulse", subTanni], ""],
+            ["Speed Data", [subTanni+"/s", "100pps"], ""],
+            ["Accel. Data", [subTanni+"/s\u00b2", "kpps\u00b2"], ""],
+            ["Position Data", [subTanni, "Pulse"], ""],
         ]
     }
     const incrementalOshitukeData = {
@@ -646,9 +662,9 @@ export const TypeDataInDousaEng = (props) => {
             ["Accel. Data", ["kpps\u00b2"], ""],
             ["Position Data", ["Pulse"], ""],
         ] : [
-            ["Speed Data", ["100pps", subTanni+"/s"], ""],
-            ["Accel. Data", ["kpps\u00b2", subTanni+"/s\u00b2"], ""],
-            ["Position Data", ["Pulse", subTanni], ""],
+            ["Speed Data", [subTanni+"/s", "100pps"], ""],
+            ["Accel. Data", [subTanni+"/s\u00b2", "kpps\u00b2"], ""],
+            ["Position Data", [subTanni, "Pulse"], ""],
         ]
     }
     const timerData = {

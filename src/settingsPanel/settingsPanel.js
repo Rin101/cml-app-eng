@@ -1,27 +1,29 @@
 import { Button } from '@mui/material'
 import { useState, useRef, useEffect } from 'react'
 import { SettingInfo } from './settingInfo'
+import { SettingsDefaultInfo } from './settingsDefaultInfo'
 import './settingsPanel.css'
+
 
 export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
 
     const settingsPanelData = {
         "kyoutuu": [
-            {"kNum":5, "name":"inposition", "label":"In-position Range", "inputType":"text", "infoText":'Set the range for In-position.'},
+            {"kNum":5, "name":"inposition", "tanni": "Pulse", "label":"In-position Range", "inputType":"text", "infoText":'Set the range for In-position.'},
         ],
         "oshituke": [
-            {"kNum":11, "name":"oshitukeDousaMode", "label":"Push Motion Operation Mode", "inputType":"dropdown", "inputs":["Continuous(One direction)","Set time(One direction)","Continuous(Both direction)","Set time(Both direction)",], "infoText":<>Set the direction and time for Push Motion<br/>():Direction to limit torque.<br/>One direction:Torque is limited only in operation direction.<br/>Both direction:Torque is limited in both directions</>},
-            {"kNum":12, "name":"oshitukeDousaTorque", "label":"Push Motion Torque", "inputType":"text", "infoText":<>Set the torque during pressing operation by command Q or Z in % of the rated torque.</>},
-            {"kNum":13, "name":"oshitukeDousaTime", "label":"Push Motion Holding Time", "inputType":"text", "infoText":'Set Push Motion Holding Time (Ref: 8.6.2)'},
+            {"kNum":11, "name":"oshitukeDousaMode", "tanni": "", "label":"Push Motion Operation Mode", "inputType":"dropdown", "inputs":["Continuous(One direction)","Set time(One direction)","Continuous(Both direction)","Set time(Both direction)",], "infoText":<>Set the direction and time for Push Motion<br/>():Direction to limit torque.<br/>One direction:Torque is limited only in operation direction.<br/>Both direction:Torque is limited in both directions</>},
+            {"kNum":12, "name":"oshitukeDousaTorque", "tanni": "%", "label":"Push Motion Torque", "inputType":"text", "infoText":<>Set the torque during pressing operation by command Q or Z in % of the rated torque.</>},
+            {"kNum":13, "name":"oshitukeDousaTime", "tanni": "msec", "label":"Push Motion Holding Time", "inputType":"text", "infoText":'Set Push Motion Holding Time (Ref: 8.6.2)'},
         ],
         "genten": [
-            {"kNum":22, "name":"gentenShingou", "label":"Origin Signal Source", "inputType":"dropdown", "inputs":["Stopper Detection","Stopper Detection (Auto)","Origin Sensor","Origin Sensor(Auto)"], "infoText":<>Set the origin detection signal source and detection method. The origin sensor can be assigned only to input point 1.<br/>(Auto): Automatic origin detection operation starts when the power is turned on.<br/>Ref: 11.1</>},
-            {"kNum":23, "name":"gentenSpeed", "label":"Origin Detection Speed", "inputType":"text", "infoText":'Set the speed for Origin Detection'},
-            {"kNum":24, "name":"gentenAccel", "label":"Origin Detection Acceleration", "inputType":"text", "infoText":'Set the acceleration for Origin Detection'},
-            {"kNum":25, "name":"gentenDirection", "label":"Origin Detection Direction", "inputType":"dropdown", "inputs":["CW","CCW"], "infoText":'Set the direction for Origin Detection'},
-            {"kNum":26, "name":"gentenOffset", "label":"Origin Offset Distance", "inputType":"text", "infoText":<>Set offset amount from detected origin to coordinate origin</>},
-            {"kNum":27, "name":"gentenUnit", "label":"Unit of Origin Offset Distance", "inputType":"dropdown", "inputs":["100","10","1"], "infoText":'Set the unit when Offset is set'},
-            {"kNum":28, "name":"gentenTorque", "label":"Stopper Detection Torque", "inputType":"text", "infoText":<>Set the torque to detect a stopper for Origin Detection by percentage to rated torque<br/>Ref: 11.1.1</>},
+            {"kNum":22, "name":"gentenShingou", "tanni": "", "label":"Origin Signal Source", "inputType":"dropdown", "inputs":["Stopper Detection","Stopper Detection (Auto)","Origin Sensor","Origin Sensor(Auto)"], "infoText":<>Set the origin detection signal source and detection method. The origin sensor can be assigned only to input point 1.<br/>(Auto): Automatic origin detection operation starts when the power is turned on.<br/>Ref: 11.1</>},
+            {"kNum":23, "name":"gentenSpeed", "tanni": "100pp", "label":"Origin Detection Speed", "inputType":"text", "infoText":'Set the speed for Origin Detection'},
+            {"kNum":24, "name":"gentenAccel", "tanni": "kpps2", "label":"Origin Detection Acceleration", "inputType":"text", "infoText":'Set the acceleration for Origin Detection'},
+            {"kNum":25, "name":"gentenDirection", "tanni": "", "label":"Origin Detection Direction", "inputType":"dropdown", "inputs":["CW","CCW"], "infoText":'Set the direction for Origin Detection'},
+            {"kNum":26, "name":"gentenOffset", "tanni": "Pulse", "label":"Origin Offset Distance", "inputType":"text", "infoText":<>Set offset amount from detected origin to coordinate origin</>},
+            {"kNum":27, "name":"gentenUnit", "tanni": "Pulse", "label":"Unit of Origin Offset Distance", "inputType":"dropdown", "inputs":["100","10","1"], "infoText":'Set the unit when Offset is set'},
+            {"kNum":28, "name":"gentenTorque", "tanni": "%", "label":"Stopper Detection Torque", "inputType":"text", "infoText":<>Set the torque to detect a stopper for Origin Detection by percentage to rated torque<br/>Ref: 11.1.1</>},
         ],
     }
 
@@ -58,6 +60,7 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
                             <SettingInfo text={ data["infoText"] } />
                         </div>
                         <input className='settings-panel-item-input' placeholder={settings["kNum" + data["kNum"].toString()]} onChange={(e) => setTextInputValue(e.target.value)}/>
+                        <p className='settings-panel-item-tanni'>{data["tanni"]}</p>
                     </div>
                 )
             case "dropdown":
@@ -70,6 +73,7 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
                         <div className='settings-panel-item-input'>
                             <Dropdown setItem={setDropdownValue} defaultItem={data["inputs"][settings["kNum" + data["kNum"].toString()]]} itemArr={data["inputs"]} />
                         </div>
+                        <p className='settings-panel-item-tanni'>{data["tanni"]}</p>
                     </div>
                 )
             default:
@@ -129,6 +133,8 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
                         set to default
                     </Button>
                 </div>
+                <div style={{marginRight: "10px"}}></div>
+                <SettingsDefaultInfo info={settingsPanelData} />
             </div>
         </div>
     )
