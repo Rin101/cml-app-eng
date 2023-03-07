@@ -72,8 +72,7 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
                         case "出力点を全てOFF":
                             if (!containsShuturyokuOff) {
                                 every_program_teigi += "F1.1,F2.1,F3.1\r\n"
-                                shuturyoku_row += "O3.1\r\n"
-                                containsShuturyoku3 = true
+                                containsShuturyokuOff = true
                             } else {
                                 alert('エラー: 表を直してください\n出力点を全てOFFは1回しか使えません。')
                             }
@@ -128,9 +127,9 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
     ]
 
     // 設定のK値設定
-    const kNumList = [5, 11, 12, 13, 14, 22, 23, 24, 25, 26, 27, 28]
+    const kNumList = [5, 11, 12, 13, 14, 22, 23, 24, 25, 26, 28]
     // 毎回設定されるK値
-    const constantKNumList = [[2, "0"], [3, "1"], [4, "0"], [7, "0"], [30, 0], [43, "0000"], [44, "0"], [45, "0"], [46, "0"], [47, "0"], [53, "111"], [55, "0"], [56, "0"], [57, "0"], [65, "0"], [71, "0"], [74, "0"], [81, "1"], [82, "1"]]
+    const constantKNumList = [[2, "0"], [3, "1"], [4, "0"], [7, "0"], [27, "0"], [30, "0"], [43, "0000"], [44, "0"], [45, "0"], [46, "0"], [47, "0"], [53, "111"], [55, "0"], [56, "0"], [57, "0"], [65, "0"], [71, "0"], [74, "0"], [81, "1"], [82, "1"]]
     
 
     for (let kNum of allKNumList) {

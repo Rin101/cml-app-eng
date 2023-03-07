@@ -18,11 +18,10 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
         ],
         "genten": [
             {"kNum":22, "name":"gentenShingou", "tanni": "", "label":"Origin Signal Source", "inputType":"dropdown", "inputs":["Stopper Detection","Stopper Detection (Auto)","Origin Sensor","Origin Sensor(Auto)"], "infoText":<>Set the origin detection signal source and detection method. The origin sensor can be assigned only to input point 1.<br/>(Auto): Automatic origin detection operation starts when the power is turned on.<br/>Ref: 11.1</>},
-            {"kNum":23, "name":"gentenSpeed", "tanni": "100pp", "label":"Origin Detection Speed", "inputType":"text", "infoText":'Set the speed for Origin Detection'},
+            {"kNum":23, "name":"gentenSpeed", "tanni": "100pps", "label":"Origin Detection Speed", "inputType":"text", "infoText":'Set the speed for Origin Detection'},
             {"kNum":24, "name":"gentenAccel", "tanni": "kpps2", "label":"Origin Detection Acceleration", "inputType":"text", "infoText":'Set the acceleration for Origin Detection'},
             {"kNum":25, "name":"gentenDirection", "tanni": "", "label":"Origin Detection Direction", "inputType":"dropdown", "inputs":["CW","CCW"], "infoText":'Set the direction for Origin Detection'},
-            {"kNum":26, "name":"gentenOffset", "tanni": "Pulse", "label":"Origin Offset Distance", "inputType":"text", "infoText":<>Set offset amount from detected origin to coordinate origin</>},
-            {"kNum":27, "name":"gentenUnit", "tanni": "Pulse", "label":"Unit of Origin Offset Distance", "inputType":"dropdown", "inputs":["100","10","1"], "infoText":'Set the unit when Offset is set'},
+            {"kNum":26, "name":"gentenOffset", "tanni": "100Pulse", "label":"Origin Offset Distance", "inputType":"text", "infoText":<>Set offset amount from detected origin to coordinate origin</>},
             {"kNum":28, "name":"gentenTorque", "tanni": "%", "label":"Stopper Detection Torque", "inputType":"text", "infoText":<>Set the torque to detect a stopper for Origin Detection by percentage to rated torque<br/>Ref: 11.1.1</>},
         ],
     }
@@ -91,11 +90,11 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
         // closePanel()
         setSettingsObj({
             'kNum5': 5, 'kNum11': 0, 'kNum12': 30, 'kNum13': 200, 'kNum14': 0, 'kNum22': 0,
-            'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum27': 0, 'kNum28': 30
+            'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum28': 30
         })
         setSettings({
             'kNum5': 5, 'kNum11': 0, 'kNum12': 30, 'kNum13': 200, 'kNum14': 0, 'kNum22': 0,
-            'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum27': 0, 'kNum28': 30
+            'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum28': 30
         })
     }
 

@@ -21,7 +21,7 @@ export const AppEng = () => {
     const [isNyuryokuShingou, setIsNyuryokuShingou] = useState(false)
     const [settings, setSettings] = useLocalStorage('kNum', {
         'kNum5': 5, 'kNum11': 0, 'kNum12': 30, 'kNum13': 200, 'kNum14': 0, 'kNum22': 0,
-        'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum27': 0, 'kNum28': 30
+        'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum28': 30
     })
     const [isMute, setIsMute] = useState(false)
     const [jiku, setJiku] = useState(1)
