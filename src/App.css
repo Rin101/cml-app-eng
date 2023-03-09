@@ -403,7 +403,7 @@ input[type]:focus,
   position: absolute;
   top: 100%;
   box-shadow: 0 2px 2px 1px rgba(255, 105, 135, 0.2);
-  z-index: 3000;
+  z-index: 2100;
   width: 100%;
   background-color: white;
 }
@@ -414,7 +414,7 @@ input[type]:focus,
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  z-index: 4000;
+  z-index: 2200;
 }
 
 .dropdown-item:hover {

@@ -1,23 +1,23 @@
+import { useState } from "react"
 import { useRef } from "react"
 
 export const SettingsDefaultInfo = ({ info }) => {
 
     const textBoxRef = useRef()
+    const [isShown, setIsShown] = useState(false);
 
     const display = () => {
-        textBoxRef.current.classList.add("shown")
-        textBoxRef.current.classList.remove("hidden")
-        setTimeout(() => {
-            if (!textBoxRef.current.classList.contains("hidden")) {
-                textBoxRef.current.style.display = "block"
-            }
-        }, 300)
+        setIsShown(true)
+        // textBoxRef.current.classList.add("shown")
+        // textBoxRef.current.classList.remove("hidden")
+        // textBoxRef.current.style.display = "block"
     }
 
     const hide = () => {
-        textBoxRef.current.classList.remove('shown')
-        textBoxRef.current.classList.add('hidden')
-        textBoxRef.current.style.display = "none"
+        setIsShown(false)
+        // textBoxRef.current.classList.remove('shown')
+        // textBoxRef.current.classList.add('hidden')
+        // textBoxRef.current.style.display = "none"
     }
 
     const defaultValues = {
@@ -29,23 +29,23 @@ export const SettingsDefaultInfo = ({ info }) => {
         let infoList = []
         for (let item of info["kyoutuu"]) {
             if (item["inputType"] === "text") {
-                infoList.push(<p key={item}>{item["label"]}: {defaultValues["kNum"+item["kNum"]]}</p>)
+                infoList.push(<p key={item["kNum"]}>{item["kNum"]}: {item["label"]}: {defaultValues["kNum"+item["kNum"]]}</p>)
             } else {
-                infoList.push(<p key={item}>{item["label"]}: {item["inputs"][defaultValues["kNum"+item["kNum"]]]}</p>)
+                infoList.push(<p key={item["kNum"]}>{item["kNum"]}: {item["label"]}: {item["inputs"][defaultValues["kNum"+item["kNum"]]]}</p>)
             }
         }
         for (let item of info["oshituke"]) {
             if (item["inputType"] === "text") {
-                infoList.push(<p key={item}>{item["label"]}: {defaultValues["kNum"+item["kNum"]]}</p>)
+                infoList.push(<p key={item["kNum"]}>{item["kNum"]}: {item["label"]}: {defaultValues["kNum"+item["kNum"]]}</p>)
             } else {
-                infoList.push(<p key={item}>{item["label"]}: {item["inputs"][defaultValues["kNum"+item["kNum"]]]}</p>)
+                infoList.push(<p key={item["kNum"]}>{item["kNum"]}: {item["label"]}: {item["inputs"][defaultValues["kNum"+item["kNum"]]]}</p>)
             }
         }
         for (let item of info["genten"]) {
             if (item["inputType"] === "text") {
-                infoList.push(<p key={item}>{item["label"]}: {defaultValues["kNum"+item["kNum"]]}</p>)
+                infoList.push(<p key={item["kNum"]}>{item["kNum"]}: {item["label"]}: {defaultValues["kNum"+item["kNum"]]}</p>)
             } else {
-                infoList.push(<p key={item}>{item["label"]}: {item["inputs"][defaultValues["kNum"+item["kNum"]]]}</p>)
+                infoList.push(<p key={item["kNum"]}>{item["kNum"]}: {item["label"]}: {item["inputs"][defaultValues["kNum"+item["kNum"]]]}</p>)
             }
         }
         return infoList
@@ -67,16 +67,19 @@ export const SettingsDefaultInfo = ({ info }) => {
     const displayConstants = () => {
         let infoList = []
         for (let item of constantValues) {
-            infoList.push(<p key={item}>{constantNumNames[item[0]]}: {item[1]}</p>)
+            infoList.push(<p key={item[0]}>{item[0]}: {constantNumNames[item[0]]}: {item[1]}</p>)
         }
         return infoList
     }
 
     return (
-        <div className="settings-panel-default-info-container" onMouseEnter={() => display()} onMouseLeave={() => hide()}>
-            <i className="fa-solid fa-circle-question settings-panel-item-info"></i>
-            <div ref={textBoxRef} className='settings-panel-default-info-box'>
-                { displayInfo() }
+        <div className="settings-panel-default-info-container">
+            <i id="openDefaultValues" onClick={() => display()} className="fa-solid fa-circle-question settings-panel-item-info"></i>
+            <div ref={textBoxRef} style={{display: isShown?"block":"none"}} className='settings-panel-default-info-box'>
+                <div id="closeKNumDefaultInfo" className="close-default" onClick={() => hide()}><i className="fas fa-times"></i></div>
+                <div>k値: 名前: デフォルト値</div>
+                <div style={{marginTop: "10px"}}></div>
+                <div>{ displayInfo() }</div>
                 <div style={{marginTop: "30px"}}></div>
                 <div style={{opacity:"0.8"}}>{displayConstants()}</div>
             </div>
