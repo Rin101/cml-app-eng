@@ -165,7 +165,7 @@ export const WizardSusumiryouEng = (props) => {
     const mode = params.history[1][1]
     let susumiryouText = ""
     let susumiryouVar = Math.PI
-    const [input, setInput] = useState((params.history.length >= 3) ? parseFloat(params.history[2][2]) : tkData[jikuMainNum].susumiryou[0])
+    const [input, setInput] = useState((params.history.length >= 3) ? parseFloat(params.history[2][2]) : tkData[jikuMainNum].susumiryou[1])
 
     switch (mode) {
         case "ボールねじ":
