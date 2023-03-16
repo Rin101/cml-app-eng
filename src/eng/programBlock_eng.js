@@ -155,7 +155,7 @@ export const ProgramBlockEng = (props) => {
             }
             props.setProgramData(tmp) 
             let tkTmp = [...props.tkData]
-            tkTmp.push({kikou: "initial", susumiryou: [1,1], gensoku: [1,1], bunkai: 300, tanniValue:1})
+            tkTmp.push({kikou: "initial", susumiryou: [1,1], gensoku: [1,1], bunkai: "1000", tanniValue:1})
             props.setTkData(tkTmp) 
             props.setJiku(props.jiku + 1)
         } else {
