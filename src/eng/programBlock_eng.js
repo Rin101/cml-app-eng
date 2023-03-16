@@ -269,8 +269,7 @@ export const ProgramBlockEng = (props) => {
     }
 
     function emptyBoxDragDrop(e) {
-        function emptyBoxDragDrop(e) {
-            const indexArr = e.target.id.split('-')
+        const indexArr = e.target.id.split('-')
             indexArr.shift()
             let tmp = [...props.programData]
             let audio = new Audio(soundfile2);
@@ -306,7 +305,6 @@ export const ProgramBlockEng = (props) => {
                     audio.play();
                 }
             }
-        }
     }
     // -------
     function emptyBoxLoopDragOver(e) {
