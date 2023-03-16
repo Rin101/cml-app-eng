@@ -90,11 +90,11 @@ export const SettingsPanel = ({ closePanel, settings, setSettings }) => {
         // closePanel()
         setSettingsObj({
             'kNum5': 5, 'kNum11': 0, 'kNum12': 30, 'kNum13': 200, 'kNum14': 0, 'kNum22': 0,
-            'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum28': 30
+            'kNum23': 10, 'kNum24': 10, 'kNum25': 1, 'kNum26': 0, 'kNum28': 30
         })
         setSettings({
             'kNum5': 5, 'kNum11': 0, 'kNum12': 30, 'kNum13': 200, 'kNum14': 0, 'kNum22': 0,
-            'kNum23': 10, 'kNum24': 10, 'kNum25': 0, 'kNum26': 0, 'kNum28': 30
+            'kNum23': 10, 'kNum24': 10, 'kNum25': 1, 'kNum26': 0, 'kNum28': 30
         })
     }
 
