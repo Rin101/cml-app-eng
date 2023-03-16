@@ -274,7 +274,7 @@ export const ProgramBlockEng = (props) => {
             let tmp = [...props.programData]
             let audio = new Audio(soundfile2);
             if (props.currentDraggedCommand !== "タイマ" && props.currentDraggedCommand !== "繰り返し" && props.currentDraggedCommand !== "動作グループを追加" && props.currentDraggedCommand !== "NOPE" && !props.currentDraggedCommand.includes("-")) {
-                tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = [props.currentDraggedCommand, dousaNumArr[parseFloat(indexArr[2])]+1, [["数値を入力してください", "pps"], ["数値を入力してください", "pps"], ["数値を入力してください", "pps"]]]
+                tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = [props.currentDraggedCommand, dousaNumArr[parseFloat(indexArr[2])]+1, [["Enter value", "pps"], ["Enter value", "pps"], ["Enter value", "pps"]]]
                 let tmpDousaNumArr = [...dousaNumArr]
                 tmpDousaNumArr[parseFloat(indexArr[2])] += 1
                 setDousaNumArr(tmpDousaNumArr)
@@ -286,7 +286,7 @@ export const ProgramBlockEng = (props) => {
                 if (timerNumArr[parseFloat(indexArr[2])] > 14) {
                     alert("タイマは15個までしか設定できません。")
                 } else {
-                    tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = [props.currentDraggedCommand, timerNumArr[parseFloat(indexArr[2])]+1, [["数値を入力してください", "pps"], ["数値を入力してください", "pps"], ["数値を入力してください", "pps"]]]
+                    tmp[parseFloat(indexArr[0])][parseFloat(indexArr[1])][parseFloat(indexArr[2])] = [props.currentDraggedCommand, timerNumArr[parseFloat(indexArr[2])]+1, [["Enter value", "pps"], ["Enter value", "pps"], ["Enter value", "pps"]]]
                     let tmpTimerNumArr = [...timerNumArr]
                     tmpTimerNumArr[parseFloat(indexArr[2])] += 1
                     setTimerNumArr(tmpTimerNumArr)
