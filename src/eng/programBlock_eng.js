@@ -522,19 +522,19 @@ export const ProgramBlockEng = (props) => {
                                 dousaName = "Exec."
                                 break
                             case "出力点1へ出力":
-                                dousaName = "出力点1へ出力"    
+                                dousaName = "Turn on OUT1"    
                                 break
                             case "出力点2へ出力":
-                                dousaName = "出力点2へ出力"    
+                                dousaName = "Turn on OUT2"    
                                 break
                             case "出力点3へ出力":
-                                dousaName = "出力点3へ出力"    
+                                dousaName = "Turn on OUT3"    
                                 break
                             case "出力点を全てOFF":
-                                dousaName = "出力点を全てOFF"    
+                                dousaName = "Turn off all outputs"    
                                 break
                             case "原点復帰":
-                                dousaName = "原点復帰"
+                                dousaName = "Origin Detection"
                                 break    
                             default:
                                 dousaName = "PTP"
