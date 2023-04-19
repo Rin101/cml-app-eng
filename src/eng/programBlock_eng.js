@@ -352,7 +352,10 @@ export const ProgramBlockEng = (props) => {
         switch(direction) {
             case "top-up":
                 tmp.forEach(loop => {
-                    if ((tmp.indexOf(loop) !== mainItemIndex) && (loop[1][0] === tmp[mainItemIndex][0][0] && loop[1][1] === tmp[mainItemIndex][0][1])) {
+                    if ((tmp.indexOf(loop) !== mainItemIndex) && (
+                        loop[1][0] === tmp[mainItemIndex][0][0] && 
+                        parseFloat(loop[1][1]) === parseFloat(tmp[mainItemIndex][0][1])-1)
+                    ) {
                         isDirectionAvailable = false
                     }
                 })
@@ -372,7 +375,10 @@ export const ProgramBlockEng = (props) => {
                 break
             case "bottom-down":
                 for (let loop of tmp) {
-                    if ((tmp.indexOf(loop) !== mainItemIndex) && (loop[0][0] === tmp[mainItemIndex][1][0] && loop[0][1] === tmp[mainItemIndex][1][1])) {
+                    if ((tmp.indexOf(loop) !== mainItemIndex) && (
+                        parseFloat(loop[0][0]) === parseFloat(tmp[mainItemIndex][1][0]) && 
+                        parseFloat(loop[0][1]) === parseFloat(tmp[mainItemIndex][1][1])+1)
+                    ) {
                         isDirectionAvailable = false
                     }
                 }
@@ -814,9 +820,18 @@ export const LoopInputBoxEng = (props) => {
     const popupRef = useRef()
     let indexArr = props.parentId.split('-')
     indexArr.shift()
+    const loopGroupIndex = indexArr[0]
+    const loopRowIndex = indexArr[1]
     // --
     let tmp = [...props.loopData]
-    const [value, setValue] = useState(tmp[parseFloat(indexArr[0])][2])
+    let currentLoopIndexInList = 0;
+    for (let i=0; i<tmp.length; i++) {
+        let loopItem = tmp[i];
+        if (loopItem[0][0] == loopGroupIndex && loopItem[0][1] == loopRowIndex) {
+            currentLoopIndexInList = i;
+        }
+    } 
+    const [value, setValue] = useState(tmp[currentLoopIndexInList][2])
     // --
     const closeTypeData = () => {
         props.setInputBoxType("none")
@@ -830,7 +845,7 @@ export const LoopInputBoxEng = (props) => {
         if (isAllNumber.length === 0) {
             let tmp = [...props.loopData]
             let value = popupRef.current.querySelector(".type-data-input").value
-            tmp[parseFloat(indexArr[0])][2] = value
+            tmp[currentLoopIndexInList][2] = value
             props.setLoopData(tmp)
             // --
             closeTypeData()
