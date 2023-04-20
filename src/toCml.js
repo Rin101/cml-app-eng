@@ -173,7 +173,8 @@ export const toCML = (programData, loopData, isNyuryokuShingou, tkData, settings
     // }
     let nyuryokuTxt = `L1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND.1\r\n`
     // let nyuryokuTxt = `\r\nK81=1\r\nK82=1\r\nL1.1\r\nI1.1,JL2.1,T0.1\r\nI2.1,JL3.1,T0.1\r\nI3.1,JL4.1,T0.1\r\nI4.1,].1:].1,T0.1\r\nL2.1\r\n[1.1\r\nI1.1,W0.1,JL1.1\r\nL3.1\r\n[2.1\r\nI2.1,W0.1,JL1.1\r\nL4.1\r\n[3.1\r\nI3.1,W0.1,JL1.1\r\nEND.1`
-    return output + "END.1\r\n" + nyuryokuTxt + "\\" + "\r\n$.\r\n" + settingsCML + "\r\n"
+    return output + "END.1\r\n" + nyuryokuTxt + "\\" + "\r\n" + settingsCML + "\r\n$." + "\r\n"
+    // return output + "END.1\r\n" + nyuryokuTxt + "\\" + "\r\n$.\r\n" + settingsCML + "\r\n"
 }
 
 const getPulseValue = (valueArr, tanniValue, divideVar=1) => {
