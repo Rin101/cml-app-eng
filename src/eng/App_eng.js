@@ -56,6 +56,7 @@ export const AppEng = () => {
     const layerRef = useRef()
     const commandSelectorRef = useRef()
     const instructionPopupRef = useRef()
+    const jikkouNumPopupRef = useRef()
 
     // const getIndex = (document) => {
     //     let res = document.id.split('-')
@@ -198,6 +199,51 @@ export const AppEng = () => {
         )
     }
 
+    const PopUpOfJikkouNum = () => {
+
+        const [jikkouNum, setJikkouNum] = useState(0);
+
+        const close = () => {
+            jikkouNumPopupRef.current.style.display = "none"
+            layerRef.current.style.display = "none"
+        }
+
+        const sendJikkou = () => {
+            if (jikkouNum === 0) {
+                alert("Select a number")
+            } else {
+                let jikkouCml = "["+jikkouNum.toString() + ".1\n"
+                pressRun(jikkouCml)
+            }
+        }
+
+        return (
+            <div className='popup-instruction' ref={jikkouNumPopupRef}>
+                <div className='popup-container'>
+                    <div id="close-instruction-popup" onClick={() => close()}><i className="fas fa-times-circle"></i></div>
+                    <div className='popup-jikkou-content'>
+                        <p>Select bank number to run</p>
+                        <div style={{marginTop: "30px"}}></div>
+                        <select id="test-dropdown" 
+                            defaultValue={jikkouNum}
+                            onChange={(e) => setJikkouNum(e.target.value)}
+                            >
+                            <option value="0">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <div style={{marginTop: "30px"}}></div>
+                        <Button variant="contained" onClick={() => sendJikkou()}>
+                            Run
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     async function jikkou() {
         // setCmlOutput(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
         // pressRun(toCML(programData, loopData, isNyuryokuShingou, tannikannsannData, settings))
@@ -209,6 +255,11 @@ export const AppEng = () => {
         } else {
             alert("CMLに変換してください。")
         }
+    }
+
+    const openJikkouNumPopup = () => {
+        jikkouNumPopupRef.current.style.display = "flex"
+        layerRef.current.style.display = "flex"
     }
 
     const closeTanni = () => {
@@ -227,6 +278,7 @@ export const AppEng = () => {
     return (
         <div className="main">
             <PopUpOfInstruction />
+            <PopUpOfJikkouNum />
             <DataInputBox inputBoxType={inputBoxType} />
             <div ref={layerRef} className="layer"></div>
             <Tannikannsann jiku={jiku} tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} application={"hi"} setApplication={"hi"} tanniValue={"hi"} setTanniValue={"hi"} topMenuRef={"hi"} closeTanni={closeTanni}/>
@@ -282,30 +334,16 @@ export const AppEng = () => {
                 </div>
             </div>
             <div className='bottom-menu-container'>
-                <div className='bottom-menu' onClick={() => jikkou()}>
+                <div className='bottom-menu' id="bottom-menu-main-button" onClick={() => jikkou()}>
                     {/* <Button variant="contained" onClick={() => jikkou()}>Write to Motor</Button> */}
                     <p id='bottom-menu-button-text'>Write to Motor</p>
                 </div>
             </div>
-            <div className='bottom-menu-spacer'></div>
-            {/* <div className="center-section">
-                <TopMenuEng tannikannsannData={tannikannsannData} setTannikannsannData={setTannikannsannData} programData={programData} setProgramData={setProgramData} loopData={loopData} setLoopData={setLoopData} layerRef={layerRef} cmlOutput={cmlOutput} setCmlOutput={setCmlOutput} isNyuryokuShingou={isNyuryokuShingou} setIsNyuryokuShingou={setIsNyuryokuShingou} jiku={jiku} setJiku={setJiku}/>
-                <ProgramBlockEng tkData={tannikannsannData} setInputBoxType={setInputBoxType} inputBoxType={inputBoxType} loopInputObj={loopInputObj} setLoopInputObj={setLoopInputObj} typeDataObj={typeDataObj} setTypeDataObj={setTypeDataObj} typeDataRef={typeDataRef} loopInputRef={loopInputRef} isNyuryokuShingou={isNyuryokuShingou} setCmlOutput={setCmlOutput} loopData={loopData} setLoopData={setLoopData} programData={programData} setProgramData={setProgramData} jiku={jiku} setJiku={setJiku} currentDraggedCommand={currentDraggedCommand} setCurrentDraggedCommand={setCurrentDraggedCommand}/>
-            </div>
-            <div className="cml-output-section">
-                <h3 className='unselectable'>CML</h3>
-                <Editor value={cmlOutput} onChange={setCmlOutput} />
-                <div className="jikkou-button">
-                    <Button variant="contained" onClick={() => handleFileExport()}>
-                        テキストファイルにエクスポート
-                    </Button>
-                    <div className="copy-cml-container">
-                        <div className="copy-cml" onMouseEnter={() => display(expCopy)} onMouseLeave={() => hide(expCopy)} onClick={() => copyCML(cmlOutput)}><i className="fas fa-copy"></i></div>
-                        <div ref={expCopy} className="exp-copy hidden">コピー</div>
-                        <div ref={expCopyDone} className="exp-copy-done hidden">コピーされました</div>
-                    </div>
+            <div style={{marginLeft: "10px"}}></div>
+                <div className='bottom-menu' id="bottom-menu-jikkou-button" onClick={() => openJikkouNumPopup()}>
+                    <p className='bottom-menu-button-text'>Run</p>
                 </div>
-            </div> */}
+            <div className='bottom-menu-spacer'></div>
         </div>
     )
 }
