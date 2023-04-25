@@ -338,11 +338,11 @@ export const AppEng = () => {
                     {/* <Button variant="contained" onClick={() => jikkou()}>Write to Motor</Button> */}
                     <p id='bottom-menu-button-text'>Write to Motor</p>
                 </div>
-            </div>
-            <div style={{marginLeft: "10px"}}></div>
+                <div style={{marginLeft: "10px"}}></div>
                 <div className='bottom-menu' id="bottom-menu-jikkou-button" onClick={() => openJikkouNumPopup()}>
-                    <p className='bottom-menu-button-text'>Run</p>
+                    <p className='bottom-menu-button-text'>実行コマンド送信</p>
                 </div>
+            </div>
             <div className='bottom-menu-spacer'></div>
         </div>
     )
