@@ -224,7 +224,7 @@ export const AppEng = () => {
                     <div className='popup-jikkou-content'>
                         <p>Select bank number to run</p>
                         <div style={{marginTop: "30px"}}></div>
-                        <select id="test-dropdown" 
+                        <select id="jikkou-dropdown" 
                             defaultValue={jikkouNum}
                             onChange={(e) => setJikkouNum(e.target.value)}
                             >
@@ -235,7 +235,9 @@ export const AppEng = () => {
                             <option value="4">4</option>
                         </select>
                         <div style={{marginTop: "30px"}}></div>
-                        <Button variant="contained" onClick={() => sendJikkou()}>
+                        <p id='jikkou-popup-text'>*When the execution command is sent, the program <br/>currently written in the motor is executed and the motor rotates.</p>
+                        <div style={{marginTop: "15px"}}></div>
+                        <Button color='warning' variant="contained" onClick={() => sendJikkou()}>
                             Run
                         </Button>
                     </div>
@@ -336,11 +338,11 @@ export const AppEng = () => {
             <div className='bottom-menu-container'>
                 <div className='bottom-menu' id="bottom-menu-main-button" onClick={() => jikkou()}>
                     {/* <Button variant="contained" onClick={() => jikkou()}>Write to Motor</Button> */}
-                    <p id='bottom-menu-button-text'>Write to Motor</p>
+                    <p className='bottom-menu-button-text'>Write to Motor</p>
                 </div>
                 <div style={{marginLeft: "10px"}}></div>
                 <div className='bottom-menu' id="bottom-menu-jikkou-button" onClick={() => openJikkouNumPopup()}>
-                    <p className='bottom-menu-button-text'>実行コマンド送信</p>
+                    <p className='bottom-menu-button-text'>Run</p>
                 </div>
             </div>
             <div className='bottom-menu-spacer'></div>

@@ -614,13 +614,20 @@ input[type]:focus,
 .popup-jikkou-content {
   background-color: white;
   border-radius: 1rem;
-  height: 30vh;
   min-width: 30vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 30px 50px;
+}
+
+#jikkou-dropdown {
+  padding: 5px 24px;
+}
+
+#jikkou-popup-text {
+  font-size: 0.8rem;
 }
 
 .popup-instruction img {
@@ -684,6 +691,7 @@ input[type]:focus,
 }
 
 #bottom-menu-jikkou-button {
+  background-color: #ED6C03;
   width: 30%;
 }
 
